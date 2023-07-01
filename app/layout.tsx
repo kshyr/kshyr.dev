@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
+import "@code-hike/mdx/dist/index.css";
 import { Inter, Roboto_Mono } from "next/font/google";
 
 const inter = Inter({

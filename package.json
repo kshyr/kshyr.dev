@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@code-hike/mdx": "0.9.1-next.1",
+    "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.7",
@@ -29,12 +31,16 @@
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "remark-gfm": "^3.0.1",
+    "remark-rehype": "^10.1.0",
+    "shiki": "^0.14.3",
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0"
   }

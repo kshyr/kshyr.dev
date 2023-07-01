@@ -20,7 +20,7 @@ export default function ProjectModal({
       <SheetTrigger>
         <ProjectCard title={title} description={description} tags={tags} />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto overflow-x-hidden">
         <SheetHeader>
           <SheetTitle className="text-4xl">{title}</SheetTitle>
           <SheetDescription>{description}</SheetDescription>
