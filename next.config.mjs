@@ -1,6 +1,6 @@
 import nextMDX from "@next/mdx";
 import { remarkCodeHike } from "@code-hike/mdx";
-import theme from "shiki/themes/dracula.json" assert { type: "json" };
+import theme from "shiki/themes/rose-pine.json" assert { type: "json" };
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
