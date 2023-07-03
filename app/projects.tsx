@@ -31,7 +31,7 @@ export const projects: Project[] = [
     type: "project",
     title: "Next 13 + Sanity template",
     description:
-      "Purpose of this project was to make others lives easier and provide a quick way to start a project with Sanity Studio (admin panel for CMS) and be deploy-ready.",
+      "Purpose of this project was to make others' lives easier and provide a quick way to start a project with Sanity Studio (admin panel for CMS) and be deploy-ready.",
     tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
   },
 ];

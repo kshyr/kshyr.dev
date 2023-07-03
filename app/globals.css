@@ -117,7 +117,7 @@ div.ch-editor-tab-active {
 
 @layer components {
   .nav-item {
-    @apply font-bold tracking-wide text-foreground transition-colors hover:text-muted-foreground;
+    @apply font-bold tracking-wide text-foreground transition-colors hover:cursor-pointer hover:text-muted-foreground;
   }
 }
 
@@ -125,8 +125,11 @@ div.ch-editor-tab-active {
   * {
     @apply border-border;
   }
+  html {
+    @apply h-full;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply flex min-h-screen flex-col bg-background text-foreground;
   }
   h2 {
     @apply pt-3 text-2xl font-bold leading-9 tracking-normal;

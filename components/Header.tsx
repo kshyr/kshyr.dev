@@ -14,11 +14,11 @@ export default function Header() {
           alt="logo"
         />
       </Link>
-      <div className="flex items-center gap-8">
-        <Link href="/" className="no-underline">
+      <div className="flex items-center gap-8 font-display">
+        <Link href="/" className="cursor-default no-underline">
           <span className="nav-item">Home</span>
         </Link>
-        <Link href="/library" className="no-underline">
+        <Link href="/library" className="cursor-default no-underline">
           <span className="nav-item">Library</span>
         </Link>
         <ThemeSwitch />

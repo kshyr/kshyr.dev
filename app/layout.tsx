@@ -1,8 +1,15 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 import "@code-hike/mdx/dist/index.css";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Roboto_Mono, Lexend_Deca } from "next/font/google";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const lexend = Lexend_Deca({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lexend",
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,10 +35,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto_mono.variable} container`}>
+      <body
+        className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl justify-between pl-16 pr-8 pt-6`}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
+          <div>
+            <Header />
+            {children}
+          </div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
