@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function DevDotToLink() {
   return (
     <div className="mb-1 flex">
-      <a href="dsds">
+      <a target="_blank" href="https://dev.to/kshyr">
         <Image
           src="dev-to.svg"
           width={24}
