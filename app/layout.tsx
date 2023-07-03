@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 import "@code-hike/mdx/dist/index.css";
 import { Inter, Roboto_Mono } from "next/font/google";
+import Header from "@/components/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,8 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto_mono.variable}`}>
+      <body className={`${inter.className} ${roboto_mono.variable} container`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
           {children}
         </ThemeProvider>
       </body>

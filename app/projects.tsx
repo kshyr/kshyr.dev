@@ -5,6 +5,7 @@ import { headers } from "next/dist/client/components/headers";
 
 const rawProjects: Project[] = [
   {
+    handle: "vec",
     type: "blog",
     title: "Implementing Vec in Rust",
     description:
