@@ -1,9 +1,8 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Vec from "./markdowns/implementing-vec.mdx";
 import type { Project } from "@/lib/types";
-import { headers } from "next/dist/client/components/headers";
 
-const rawProjects: Project[] = [
+export const projects: Project[] = [
   {
     handle: "vec",
     type: "blog",
@@ -37,26 +36,11 @@ const rawProjects: Project[] = [
   },
 ];
 
-async function getREADME(handle: Project["handle"]) {
+export async function getREADME(handle: Project["handle"]) {
   const res = await fetch(
     `https://api.github.com/repos/kshyr/${handle}/readme`
   );
   const unwrapped = await res.json();
   const markdown = atob(unwrapped.content);
   return <MDXRemote source={markdown} />;
-}
-
-export const projects: Project[] = [];
-
-for (const rawProject of rawProjects) {
-  if (rawProject.bodyMarkdown || rawProject.type === "blog") {
-    projects.push(rawProject);
-    continue;
-  }
-  const readmeMarkdown = getREADME(rawProject.handle);
-  const updatedProject = {
-    ...rawProject,
-    bodyMarkdown: readmeMarkdown,
-  } as Project;
-  projects.push(updatedProject);
 }
