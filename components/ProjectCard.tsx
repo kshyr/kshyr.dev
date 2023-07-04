@@ -1,9 +1,20 @@
+"use client";
 import { Card, CardDescription, CardTitle, CardHeader } from "./ui/card";
 import { Github, ScrollText } from "lucide-react";
 import { Badge } from "./ui/badge";
 import type { Project } from "@/lib/types";
 import Link from "next/link";
 import { cx } from "class-variance-authority";
+import { Variants, motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+interface MotionProps {
+  variants: Variants;
+  index: number;
+  delay: number;
+}
+
+type ProjectCardProps = Partial<Project> & MotionProps;
 
 export default function ProjectCard({
   handle,
@@ -15,7 +26,7 @@ export default function ProjectCard({
   index,
   delay,
 }: ProjectCardProps) {
-  const fullAnimationTime = 0.6;
+  const fullAnimationTime = 0.8;
   const fullAnimationDelay = delay + fullAnimationTime * index;
 
   const titleVariants: Variants = {
@@ -58,15 +69,27 @@ export default function ProjectCard({
   const [animationDone, setAnimationDone] = useState(false);
 
   return (
-    <Link href={"/" + handle} className="no-underline">
+    <Link
+      href={animationDone ? `/${handle}` : ""}
+      className={cx("no-underline", animationDone || "cursor-default")}
+    >
       <Card
+        variants={variants as Variants}
         className={cx(
-          "group flex w-96 border-transparent transition-colors hover:cursor-pointer hover:border-b-primary/10 hover:bg-secondary  hover:dark:border-b-border hover:dark:border-t-primary/10"
+          "group flex w-96 border-transparent transition-colors",
+          animationDone &&
+          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10",
+          animationDone ? "shadow" : "shadow-none"
           //,"dark:border-l-border"
         )}
       >
         <CardHeader className="w-full gap-1">
-          <div className="mb-1 flex h-4 w-full items-center justify-between">
+          <motion.div
+            variants={titleVariants}
+            initial="initial"
+            animate="animate"
+            className="mb-1 flex h-4 w-full items-center justify-between"
+          >
             <CardTitle className="max-w-[16rem] text-left leading-tight">
               {title}
               {/* <span className="mt-0.5 block h-[1px] max-w-0 bg-foreground transition-all duration-500 group-hover:max-w-full"></span> */}
@@ -76,13 +99,27 @@ export default function ProjectCard({
             ) : (
               <Github width={20} />
             )}
-          </div>
-          <CardDescription className="text-left">{description}</CardDescription>
-          <div className="flex flex-wrap gap-2">
+          </motion.div>
+          <CardDescription
+            variants={descriptionVariants}
+            animate="animate"
+            initial="initial"
+            className="text-left"
+            onAnimationComplete={() => setAnimationDone(true)}
+          >
+            {description}
+          </CardDescription>
+          <motion.div
+            className="flex flex-wrap gap-2"
+            variants={badgeVariants}
+            initial="initial"
+            animate="animate"
+          >
             {tags?.map((tag, i) => {
               return (
                 <Badge
                   key={tag + i}
+                  variants={badgeVariants}
                   variant="secondary"
                   className="group-hover:border-primary/50"
                 >
@@ -90,7 +127,7 @@ export default function ProjectCard({
                 </Badge>
               );
             })}
-          </div>
+          </motion.div>
         </CardHeader>
       </Card>
     </Link>
