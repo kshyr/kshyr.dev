@@ -11,7 +11,52 @@ export default function ProjectCard({
   title,
   description,
   tags,
-}: Partial<Project>) {
+  variants,
+  index,
+  delay,
+}: ProjectCardProps) {
+  const fullAnimationTime = 0.6;
+  const fullAnimationDelay = delay + fullAnimationTime * index;
+
+  const titleVariants: Variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: fullAnimationDelay,
+      },
+    },
+  };
+
+  const descriptionVariants: Variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: 0.25 + fullAnimationDelay,
+      },
+    },
+  };
+
+  const badgeVariants: Variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.4 + fullAnimationDelay,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const [animationDone, setAnimationDone] = useState(false);
+
   return (
     <Link href={"/" + handle} className="no-underline">
       <Card
