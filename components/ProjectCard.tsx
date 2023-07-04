@@ -5,11 +5,13 @@ import { Badge } from "./ui/badge";
 import type { Project } from "@/lib/types";
 import Link from "next/link";
 import { cx } from "class-variance-authority";
-import { Variants, motion } from "framer-motion";
+import { Variants, motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 interface MotionProps {
   variants: Variants;
   index: number;
+  delay: number;
 }
 
 type ProjectCardProps = Partial<Project> & MotionProps;
@@ -22,9 +24,10 @@ export default function ProjectCard({
   tags,
   variants,
   index,
+  delay,
 }: ProjectCardProps) {
   const fullAnimationTime = 0.8;
-  const fullAnimationDelay = fullAnimationTime * index;
+  const fullAnimationDelay = delay + fullAnimationTime * index;
 
   const titleVariants: Variants = {
     initial: {
@@ -45,7 +48,7 @@ export default function ProjectCard({
     animate: {
       opacity: 1,
       transition: {
-        delay: 0.3 + fullAnimationDelay,
+        delay: 0.25 + fullAnimationDelay,
       },
     },
   };
@@ -58,17 +61,25 @@ export default function ProjectCard({
       opacity: 1,
       transition: {
         delayChildren: 0.4 + fullAnimationDelay,
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
+  const [animationDone, setAnimationDone] = useState(false);
+
   return (
-    <Link href={"/" + handle} className="no-underline">
+    <Link
+      href={animationDone ? `/${handle}` : ""}
+      className={cx("no-underline", animationDone || "cursor-default")}
+    >
       <Card
         variants={variants as Variants}
         className={cx(
-          "group flex w-96 border-transparent transition-colors hover:cursor-pointer hover:border-b-primary/10 hover:bg-secondary  hover:dark:border-b-border hover:dark:border-t-primary/10"
+          "group flex w-96 border-transparent transition-colors",
+          animationDone &&
+          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10",
+          animationDone ? "shadow" : "shadow-none"
           //,"dark:border-l-border"
         )}
       >
@@ -94,6 +105,7 @@ export default function ProjectCard({
             animate="animate"
             initial="initial"
             className="text-left"
+            onAnimationComplete={() => setAnimationDone(true)}
           >
             {description}
           </CardDescription>
