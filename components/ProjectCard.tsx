@@ -5,8 +5,10 @@ import { Badge } from "./ui/badge";
 import type { Project } from "@/lib/types";
 import Link from "next/link";
 import { cx } from "class-variance-authority";
-import { Variants, motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { Variants, motion } from "framer-motion";
+import { useState } from "react";
+import { useLastVisited } from "@/lib/hooks/useLastVisited";
+import { usePathname } from "next/navigation";
 
 interface MotionProps {
   variants: Variants;
@@ -26,6 +28,8 @@ export default function ProjectCard({
   index,
   delay,
 }: ProjectCardProps) {
+  const pathname = usePathname();
+  const { lastVisitedDiffMins, animReady } = useLastVisited(pathname);
   const fullAnimationTime = 0.8;
   const fullAnimationDelay = delay + fullAnimationTime * index;
 
@@ -74,25 +78,23 @@ export default function ProjectCard({
       className={cx("no-underline", animationDone || "cursor-default")}
     >
       <Card
-        variants={variants as Variants}
+        variants={animReady ? (variants as Variants) : undefined}
         className={cx(
           "group flex w-96 border-transparent transition-colors",
           animationDone &&
           "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10",
           animationDone ? "shadow" : "shadow-none"
-          //,"dark:border-l-border"
         )}
       >
         <CardHeader className="w-full gap-1">
           <motion.div
-            variants={titleVariants}
+            variants={animReady ? titleVariants : undefined}
             initial="initial"
             animate="animate"
             className="mb-1 flex h-4 w-full items-center justify-between"
           >
             <CardTitle className="max-w-[16rem] text-left leading-tight">
               {title}
-              {/* <span className="mt-0.5 block h-[1px] max-w-0 bg-foreground transition-all duration-500 group-hover:max-w-full"></span> */}
             </CardTitle>
             {type === "blog" ? (
               <ScrollText width={20} />
@@ -101,7 +103,7 @@ export default function ProjectCard({
             )}
           </motion.div>
           <CardDescription
-            variants={descriptionVariants}
+            variants={animReady ? descriptionVariants : undefined}
             animate="animate"
             initial="initial"
             className="text-left"
@@ -111,7 +113,7 @@ export default function ProjectCard({
           </CardDescription>
           <motion.div
             className="flex flex-wrap gap-2"
-            variants={badgeVariants}
+            variants={animReady ? badgeVariants : undefined}
             initial="initial"
             animate="animate"
           >
@@ -119,7 +121,7 @@ export default function ProjectCard({
               return (
                 <Badge
                   key={tag + i}
-                  variants={badgeVariants}
+                  variants={animReady ? badgeVariants : undefined}
                   variant="secondary"
                   className="group-hover:border-primary/50"
                 >

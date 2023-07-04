@@ -1,7 +1,7 @@
 export default function Logo() {
   return (
     <svg
-      className="fill-primary transition-colors hover:fill-muted-foreground"
+      className="fill-primary transition-colors hover:fill-muted-foreground active:fill-muted-foreground/70"
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"

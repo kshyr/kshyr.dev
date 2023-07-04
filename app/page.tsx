@@ -2,6 +2,8 @@
 import { projects } from "./projects";
 import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
+import { useLastVisited } from "@/lib/hooks/useLastVisited";
+import { usePathname } from "next/navigation";
 
 const nameVariants: Variants = {
   initial: {
@@ -63,11 +65,18 @@ const projectsVariants: Variants = {
 };
 
 export default function Home() {
+  const pathname = usePathname();
+  const { animReady } = useLastVisited(pathname);
+
   return (
-    <motion.main className="flex flex-row justify-between py-4">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex flex-row justify-between py-4"
+    >
       <section className="flex flex-col gap-1">
         <motion.h2
-          variants={titleVariants}
+          variants={animReady ? titleVariants : undefined}
           initial="initial"
           animate="animate"
           className="text-xl font-semibold  text-muted-foreground"
@@ -75,7 +84,7 @@ export default function Home() {
           Frontend Engineer
         </motion.h2>
         <motion.h1
-          variants={nameVariants}
+          variants={animReady ? nameVariants : undefined}
           initial="initial"
           animate="animate"
           className="font-display text-[2.5rem] font-bold leading-[2.75rem] tracking-tight"
@@ -83,7 +92,7 @@ export default function Home() {
           Kostiantyn Shyrolapov
         </motion.h1>
         <motion.p
-          variants={introVariants}
+          variants={animReady ? introVariants : undefined}
           initial="initial"
           animate="animate"
           className="text-md mt-6 max-w-sm text-muted-foreground"
@@ -97,7 +106,7 @@ export default function Home() {
         </motion.p>
       </section>
       <motion.section
-        variants={projectsVariants}
+        variants={animReady ? projectsVariants : undefined}
         initial="initial"
         animate="animate"
         className="flex flex-col gap-4"
