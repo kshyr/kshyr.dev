@@ -1,9 +1,15 @@
+"use client";
 import { projects } from "./projects";
 import ProjectCard from "@/components/ProjectCard";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="flex flex-row justify-between py-4">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex flex-row justify-between py-4"
+    >
       <section className="flex flex-col gap-1">
         <h2 className="text-xl font-semibold  text-muted-foreground">
           Frontend Engineer
@@ -34,6 +40,6 @@ export default function Home() {
           );
         })}
       </section>
-    </main>
+    </motion.main>
   );
 }
