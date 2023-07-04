@@ -1,15 +1,23 @@
 "use client";
 import { projects } from "./projects";
 import ProjectCard from "@/components/ProjectCard";
-import { motion } from "framer-motion";
+import { Variants, motion } from "framer-motion";
+
+const projectsVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex flex-row justify-between py-4"
-    >
+    <motion.main className="flex flex-row justify-between py-4">
       <section className="flex flex-col gap-1">
         <h2 className="text-xl font-semibold  text-muted-foreground">
           Frontend Engineer
@@ -26,8 +34,13 @@ export default function Home() {
           officia.
         </p>
       </section>
-      <section className="flex flex-col gap-4">
-        {projects.map((project) => {
+      <motion.section
+        variants={projectsVariants}
+        initial="initial"
+        animate="animate"
+        className="flex flex-col gap-4"
+      >
+        {projects.map((project, i) => {
           return (
             <ProjectCard
               key={project.title}
@@ -36,10 +49,12 @@ export default function Home() {
               title={project.title}
               description={project.description}
               tags={project.tags}
+              variants={projectsVariants}
+              index={i}
             />
           );
         })}
-      </section>
+      </motion.section>
     </motion.main>
   );
 }
