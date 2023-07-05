@@ -117,7 +117,7 @@ div.ch-editor-tab-active {
 
 @layer components {
   .nav-item {
-    @apply font-bold tracking-wide text-foreground transition-colors hover:cursor-pointer hover:text-muted-foreground;
+    @apply font-bold tracking-wide text-foreground transition-colors hover:cursor-pointer hover:text-muted-foreground active:text-muted-foreground/70;
   }
 }
 

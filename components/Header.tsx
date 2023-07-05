@@ -6,7 +6,11 @@ import Logo from "./Logo";
 export default function Header() {
   return (
     <header className="flex h-24 items-center justify-between">
-      <Link href="/" className="flex h-8 items-center justify-center">
+      <Link
+        href="/"
+        className="flex h-8 items-center justify-center"
+        draggable={false}
+      >
         <Logo />
       </Link>
       <div className="flex items-center gap-8 font-display">
