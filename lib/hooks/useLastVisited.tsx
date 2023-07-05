@@ -27,6 +27,6 @@ export function useLastVisited(pathname: string) {
 
   return {
     lastVisitedDiffMins,
-    animReady: lastVisitedDiffMins >= animRefreshMins,
+    animReady: true,
   };
 }

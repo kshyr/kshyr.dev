@@ -30,7 +30,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const pathname = usePathname();
   const { lastVisitedDiffMins, animReady } = useLastVisited(pathname);
-  const fullAnimationTime = 0.8;
+  const fullAnimationTime = 0.65;
   const fullAnimationDelay = delay + fullAnimationTime * index;
 
   const titleVariants: Variants = {
@@ -81,9 +81,9 @@ export default function ProjectCard({
       <Card
         variants={animReady ? (variants as Variants) : undefined}
         className={cx(
-          "group flex w-96 border-transparent transition-colors",
+          "group flex w-96 select-none border-transparent transition-colors",
           animationDone &&
-          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10 active:dark:bg-secondary/60",
+          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10 active:dark:bg-secondary/70",
           animationDone ? "shadow" : "shadow-none"
         )}
       >

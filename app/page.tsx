@@ -4,6 +4,7 @@ import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
+import Name from "@/components/Name";
 
 const nameVariants: Variants = {
   initial: {
@@ -79,7 +80,7 @@ export default function Home() {
           variants={animReady ? titleVariants : undefined}
           initial="initial"
           animate="animate"
-          className="text-xl font-semibold  text-muted-foreground"
+          className="text-xl font-semibold text-muted-foreground"
         >
           Frontend Engineer
         </motion.h2>
@@ -89,7 +90,7 @@ export default function Home() {
           animate="animate"
           className="font-display text-[2.5rem] font-bold leading-[2.75rem] tracking-tight"
         >
-          Kostiantyn Shyrolapov
+          <Name />
         </motion.h1>
         <motion.p
           variants={animReady ? introVariants : undefined}
