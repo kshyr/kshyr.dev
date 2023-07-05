@@ -76,13 +76,14 @@ export default function ProjectCard({
     <Link
       href={animationDone ? `/${handle}` : ""}
       className={cx("no-underline", animationDone || "cursor-default")}
+      draggable={false}
     >
       <Card
         variants={animReady ? (variants as Variants) : undefined}
         className={cx(
           "group flex w-96 border-transparent transition-colors",
           animationDone &&
-          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10",
+          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10 active:dark:bg-secondary/60",
           animationDone ? "shadow" : "shadow-none"
         )}
       >
