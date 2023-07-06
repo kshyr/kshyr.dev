@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 const name = "Kostiantyn Shyrolapov";
-const colors = ["#549855", "#aa5555", "#fada52"];
+const colors = ["#549855", "#ca7575", "#fada52", "#aa95ca"];
 
 export default function Name() {
   return (

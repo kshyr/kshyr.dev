@@ -88,7 +88,7 @@ export default function Home() {
           variants={animReady ? nameVariants : undefined}
           initial="initial"
           animate="animate"
-          className="font-display text-[2.5rem] font-bold leading-[2.75rem] tracking-tight"
+          className="whitespace-nowrap font-display text-[2.5rem] font-bold leading-[2.75rem] tracking-tight"
         >
           <Name />
         </motion.h1>
