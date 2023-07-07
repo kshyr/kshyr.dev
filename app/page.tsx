@@ -82,7 +82,7 @@ export default function Home() {
           variants={animReady ? titleVariants : undefined}
           initial="initial"
           animate="animate"
-          className="text-xl font-semibold text-muted-foreground"
+          className="text-[15px] font-semibold text-muted-foreground sm:text-xl"
         >
           Frontend Engineer{" "}
           <em className="text-sm text-muted-foreground/80">@ Stealth</em>
@@ -91,7 +91,7 @@ export default function Home() {
           variants={animReady ? nameVariants : undefined}
           initial="initial"
           animate="animate"
-          className="whitespace-nowrap font-display text-[2.5rem] font-bold leading-[2.75rem] tracking-tight"
+          className="whitespace-nowrap font-display text-3xl font-bold leading-4 tracking-tight sm:text-[2.5rem] sm:leading-[2.75rem]"
         >
           <Name />
         </motion.h1>
@@ -99,7 +99,7 @@ export default function Home() {
           variants={animReady ? introVariants : undefined}
           initial="initial"
           animate="animate"
-          className="text-md mt-6 max-w-md cursor-default text-muted-foreground lg:max-w-sm"
+          className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
         >
           I specialize in{" "}
           <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">

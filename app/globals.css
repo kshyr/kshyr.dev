@@ -115,12 +115,6 @@ div.ch-editor-tab-active {
   color: var(--ch-tab-active-color);
 }
 
-@layer components {
-  .nav-item {
-    @apply font-bold tracking-wide text-foreground transition-colors hover:cursor-pointer hover:text-muted-foreground active:text-muted-foreground/70;
-  }
-}
-
 @layer base {
   * {
     @apply border-border;

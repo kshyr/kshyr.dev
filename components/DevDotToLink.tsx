@@ -8,7 +8,7 @@ export default function DevDotToLink() {
           src="dev-to.svg"
           width={24}
           height={24}
-          className="m-0 border-none invert-0 dark:invert"
+          className="m-0 w-6 border-none invert-0 dark:invert"
           alt="dev.to logo"
         />
       </a>

@@ -35,10 +35,10 @@ export default function Footer() {
         isAbsolute && "absolute bottom-0"
       )}
     >
-      <span className="text-sm font-extralight text-muted-foreground">
+      <span className="text-xs font-extralight text-muted-foreground md:text-sm">
         ©2023 Kostiantyn Shyrolapov
       </span>
-      <div className="flex items-center">
+      <div className=" flex items-center">
         <DevDotToLink />
         <GitHubLink />
       </div>

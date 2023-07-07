@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import ThemeSwitch from "./ThemeSwitch";
 import Link from "next/link";
 import Logo from "./Logo";
@@ -27,12 +28,12 @@ export default function Header() {
     <header className="flex h-24 items-center justify-between">
       <Link
         href="/"
-        className="flex h-8 items-center justify-center"
+        className="flex h-8 w-10 items-center justify-center md:w-14 lg:w-auto"
         draggable={false}
       >
         <Logo />
       </Link>
-      <div className="flex items-center gap-8 font-display">
+      <div className="flex items-center gap-5 font-display md:gap-8">
         {navItems.map((navItem) => {
           return (
             <Link
@@ -40,7 +41,15 @@ export default function Header() {
               href={navItem.href}
               className="cursor-default no-underline"
             >
-              <span className="nav-item">{navItem.name}</span>
+              <span
+                className={cn(
+                  "font-bold tracking-wide text-foreground transition-colors",
+                  "hover:cursor-pointer hover:text-muted-foreground active:text-muted-foreground/70",
+                  "text-sm md:text-[16px]"
+                )}
+              >
+                {navItem.name}
+              </span>
             </Link>
           );
         })}
