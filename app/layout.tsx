@@ -4,6 +4,7 @@ import "@code-hike/mdx/dist/index.css";
 import { Inter, Roboto_Mono, Lexend_Deca } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 const lexend = Lexend_Deca({
   subsets: ["latin"],
@@ -36,14 +37,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl justify-between pl-16 pr-8 pt-6`}
+        className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl `}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div>
-            <Header />
-            {children}
-          </div>
-          <Footer />
+          <NextTopLoader color="#fff" />
+          <main className="relative h-screen justify-between pl-16 pr-8 pt-6">
+            <div>
+              <Header />
+              {children}
+            </div>
+            <Footer />
+          </main>
         </ThemeProvider>
       </body>
     </html>

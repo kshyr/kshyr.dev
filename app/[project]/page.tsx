@@ -24,6 +24,7 @@ export default function Page({ params }: { params: { project: string } }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       My Post: {JSON.stringify(project)}
+      {markdown}
     </motion.div>
   );
 }
