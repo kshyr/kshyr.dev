@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { motion } from "framer-motion";
 import { projects } from "../projects";
-import Link from "next/link";
+import * as NProgress from "nprogress";
 import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter();
@@ -37,6 +37,7 @@ export default function Page() {
                 key={project.handle}
                 className="cursor-pointer text-[16px]"
                 onClick={() => {
+                  NProgress.start();
                   router.push(`/${project.handle}`);
                 }}
               >
