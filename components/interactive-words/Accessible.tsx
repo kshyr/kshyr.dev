@@ -76,9 +76,6 @@ export function Accessible() {
   const popover = (
     <Popover open={popoverOpen}>
       <PopoverTrigger
-        style={{
-          WebkitTapHighlightColor: "transparent",
-        }}
         className="select-none"
         onMouseEnter={() => isMobile || setPopoverOpen(true)}
         onMouseLeave={() => isMobile || setPopoverOpen(false)}

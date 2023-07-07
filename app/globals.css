@@ -172,6 +172,14 @@ div.ch-editor-tab-active {
   }
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 ol > li::before {
   content: counter(section, var(--list-counter-style, decimal)) ".";
   position: "absolute";
