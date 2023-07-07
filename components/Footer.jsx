@@ -14,9 +14,7 @@ export default function Footer() {
     const handleResize = () => {
       const pageHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
-      const footerHeight = document.querySelector("footer").offsetHeight;
-      const isFooterBiggerThanScreen = pageHeight - footerHeight > windowHeight;
-      setIsAbsolute(!isFooterBiggerThanScreen);
+      setIsAbsolute(pageHeight <= windowHeight);
     };
 
     handleResize();
