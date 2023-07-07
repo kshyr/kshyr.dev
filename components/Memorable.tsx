@@ -82,7 +82,7 @@ export function Memorable() {
   return (
     <motion.strong
       whileHover="animate"
-      className="whitespace-nowrap transition-colors hover:text-foreground"
+      className="select-none whitespace-nowrap transition-colors hover:text-foreground lg:select-text"
     >
       {word.split("").map((letter, i) => {
         const letterVariant: Variants = {

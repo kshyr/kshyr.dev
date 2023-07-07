@@ -114,7 +114,7 @@ export default function Home() {
           experience both{" "}
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger className="cursor-help select-text">
+              <TooltipTrigger className="cursor-help select-none lg:select-text">
                 <strong className="transition-colors hover:text-foreground">
                   accessible
                 </strong>
