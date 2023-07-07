@@ -4,6 +4,12 @@ import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import Name from "@/components/Name";
 
 const nameVariants: Variants = {
@@ -105,9 +111,25 @@ export default function Home() {
           </strong>{" "}
           - bringing designs and ideas to life, and always doing my best to make
           experience both{" "}
-          <strong className="transition-colors hover:text-foreground">
-            accessible
-          </strong>{" "}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="cursor-help select-text">
+                <strong className="transition-colors hover:text-foreground">
+                  accessible
+                </strong>
+              </TooltipTrigger>
+              <TooltipContent className="font-mono">
+                {"<"}
+                <b>strong</b>
+                {"> "}
+                <b>accessible</b>
+
+                {" </"}
+                <b>strong</b>
+                {">"}
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>{" "}
           and{" "}
           <motion.strong className="transition-colors hover:text-foreground">
             memorable
