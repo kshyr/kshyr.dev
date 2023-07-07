@@ -9,7 +9,7 @@ export default function Logo() {
       y="0px"
       width="64px"
       viewBox="0 0 447 458"
-      enable-background="new 0 0 447 458"
+      enableBackground="new 0 0 447 458"
     >
       <path
         fill="transparent"

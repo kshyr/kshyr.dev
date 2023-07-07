@@ -1,12 +1,7 @@
-"use client";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 import "@code-hike/mdx/dist/index.css";
 import { Inter, Roboto_Mono, Lexend_Deca } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NextTopLoader from "nextjs-toploader";
-import { useRef } from "react";
+import PageWrapper from "@/components/PageWrapper";
 
 const lexend = Lexend_Deca({
   subsets: ["latin"],
@@ -26,27 +21,23 @@ const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
+export const metadata = {
+  title: "kshyr | Kostiantyn Shyrolapov | Frontend Engineer",
+  description:
+    "I specialize in web development - bringing designs and ideas to life, and always doing my best to make experience both accessible and memorable to the end user.",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const contentRef = useRef<HTMLDivElement>(null);
   return (
     <html lang="en">
       <body
         className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl `}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <NextTopLoader color="#fff" />
-          <main className="relative h-screen justify-between sm:pl-4 sm:pr-2 md:pt-2 lg:pt-6">
-            <div ref={contentRef}>
-              <Header />
-              {children}
-            </div>
-            <Footer contentRef={contentRef} />
-          </main>
-        </ThemeProvider>
+        <PageWrapper>{children}</PageWrapper>
       </body>
     </html>
   );
