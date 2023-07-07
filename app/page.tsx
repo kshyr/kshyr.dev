@@ -4,14 +4,9 @@ import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import Name from "@/components/Name";
-import { Memorable } from "@/components/Memorable";
+import { Memorable } from "@/components/interactive-words/Memorable";
+import { Accessible } from "@/components/interactive-words/Accessible";
 
 const nameVariants: Variants = {
   initial: {
@@ -111,27 +106,7 @@ export default function Home() {
             web development
           </strong>{" "}
           - bringing designs and ideas to life, and always doing my best to make
-          experience both{" "}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger className="cursor-help select-none lg:select-text">
-                <strong className="transition-colors hover:text-foreground">
-                  accessible
-                </strong>
-              </TooltipTrigger>
-              <TooltipContent className="font-mono">
-                {"<"}
-                <b>strong</b>
-                {"> "}
-                <b>accessible</b>
-
-                {" </"}
-                <b>strong</b>
-                {">"}
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>{" "}
-          and <Memorable /> to the end user.
+          experience both <Accessible /> and <Memorable /> to the end user.
         </motion.p>
       </section>
       <motion.section
