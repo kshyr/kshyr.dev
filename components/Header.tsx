@@ -13,10 +13,10 @@ const navItems: NavItem[] = [
     name: "Home",
     href: "/",
   },
-  {
-    name: "About",
-    href: "/about",
-  },
+  // {
+  //   name: "About",
+  //   href: "/about",
+  // },
   {
     name: "Library",
     href: "/library",
