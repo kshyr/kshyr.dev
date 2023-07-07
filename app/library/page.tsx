@@ -19,7 +19,7 @@ export default function Page() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-row justify-between py-4"
+      className="py-4"
     >
       <Table>
         <TableCaption>A list of my projects.</TableCaption>
