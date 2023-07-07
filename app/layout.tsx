@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl justify-between pl-16 pr-8 pt-6`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <div>
             <Header />
             {children}

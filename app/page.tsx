@@ -82,7 +82,8 @@ export default function Home() {
           animate="animate"
           className="text-xl font-semibold text-muted-foreground"
         >
-          Frontend Engineer
+          Frontend Engineer{" "}
+          <em className="text-sm text-muted-foreground/80">@ Stealth</em>
         </motion.h2>
         <motion.h1
           variants={animReady ? nameVariants : undefined}
@@ -96,14 +97,22 @@ export default function Home() {
           variants={animReady ? introVariants : undefined}
           initial="initial"
           animate="animate"
-          className="text-md mt-6 max-w-sm text-muted-foreground"
+          className="text-md mt-6 max-w-sm cursor-default text-muted-foreground"
         >
-          Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit
-          enim labore culpa sint ad nisi Lorem pariatur mollit ex esse
-          exercitation amet. Nisi anim cupidatat excepteur officia.
-          Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate
-          voluptate dolor minim nulla est proident. Nostrud officia pariatur ut
-          officia.
+          I specialize in{" "}
+          <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
+            web development
+          </strong>{" "}
+          - bringing designs and ideas to life, and always doing my best to make
+          experience both{" "}
+          <strong className="transition-colors hover:text-foreground">
+            accessible
+          </strong>{" "}
+          and{" "}
+          <motion.strong className="transition-colors hover:text-foreground">
+            memorable
+          </motion.strong>{" "}
+          to the end user.
         </motion.p>
       </section>
       <motion.section
