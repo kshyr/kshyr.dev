@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Name from "@/components/Name";
+import { Memorable } from "@/components/Memorable";
 
 const nameVariants: Variants = {
   initial: {
@@ -130,11 +131,7 @@ export default function Home() {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>{" "}
-          and{" "}
-          <motion.strong className="transition-colors hover:text-foreground">
-            memorable
-          </motion.strong>{" "}
-          to the end user.
+          and <Memorable /> to the end user.
         </motion.p>
       </section>
       <motion.section

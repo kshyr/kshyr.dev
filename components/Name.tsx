@@ -4,9 +4,9 @@ import { motion, useMotionValue } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 import { hslToRgb } from "@/lib/utils";
+import { colors } from "@/lib/data/colors";
 
 const name = "Kostiantyn Shyrolapov";
-const colors = ["#549855", "#ca7575", "#fada52", "#aa95ca"];
 
 export default function Name() {
   return (

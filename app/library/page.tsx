@@ -11,7 +11,10 @@ import {
 import { motion } from "framer-motion";
 import { projects } from "../projects";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 export default function Page() {
+  const router = useRouter();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,17 +25,22 @@ export default function Page() {
         <TableCaption>A list of my projects.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
+            <TableHead className="pl-5">Title</TableHead>
             <TableHead>Type</TableHead>
             <TableHead>Tags</TableHead>
-            <TableHead>Link</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {projects.map((project) => {
             return (
-              <TableRow key={project.handle} className="text-[16px]">
-                <TableCell className="py-5 font-semibold">
+              <TableRow
+                key={project.handle}
+                className="cursor-pointer text-[16px]"
+                onClick={() => {
+                  router.push(`/${project.handle}`);
+                }}
+              >
+                <TableCell className="py-5 pl-5 font-semibold">
                   {project.title}
                 </TableCell>
                 <TableCell className="text-[14px]">
@@ -41,9 +49,6 @@ export default function Page() {
                 </TableCell>
                 <TableCell className="text-[14px]">
                   {project.tags?.join(", ")}
-                </TableCell>
-                <TableCell>
-                  <Link href={"/" + project.handle}>/{project.handle}</Link>
                 </TableCell>
               </TableRow>
             );
