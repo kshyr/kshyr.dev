@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { motion } from "framer-motion";
 import { projects } from "../projects";
-import * as NProgress from "nprogress";
+import NProgress from "nprogress";
 import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Page() {
           <TableRow>
             <TableHead className="pl-5">Title</TableHead>
             <TableHead>Type</TableHead>
-            <TableHead>Tags</TableHead>
+            <TableHead className="text-right md:text-left">Tags</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -48,7 +48,7 @@ export default function Page() {
                   {project.type.charAt(0).toUpperCase() +
                     project.type.substring(1)}
                 </TableCell>
-                <TableCell className="text-[14px]">
+                <TableCell className="text-right text-[14px]  md:text-left">
                   {project.tags?.join(", ")}
                 </TableCell>
               </TableRow>

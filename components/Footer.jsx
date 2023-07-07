@@ -38,7 +38,7 @@ export default function Footer() {
       <span className="text-xs font-extralight text-muted-foreground md:text-sm">
         ©2023 Kostiantyn Shyrolapov
       </span>
-      <div className=" flex items-center">
+      <div className="flex items-center">
         <DevDotToLink />
         <GitHubLink />
       </div>
