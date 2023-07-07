@@ -80,9 +80,9 @@ export default function Home() {
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-row justify-between py-4"
+      className="flex flex-col justify-between py-4 lg:flex-row"
     >
-      <section className="flex flex-col gap-1">
+      <section className="flex flex-col items-center gap-1 lg:items-start">
         <motion.h2
           variants={animReady ? titleVariants : undefined}
           initial="initial"
@@ -104,7 +104,7 @@ export default function Home() {
           variants={animReady ? introVariants : undefined}
           initial="initial"
           animate="animate"
-          className="text-md mt-6 max-w-sm cursor-default text-muted-foreground"
+          className="text-md mt-6 max-w-md cursor-default text-muted-foreground lg:max-w-sm"
         >
           I specialize in{" "}
           <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
@@ -138,7 +138,7 @@ export default function Home() {
         variants={animReady ? projectsVariants : undefined}
         initial="initial"
         animate="animate"
-        className="flex flex-col gap-4"
+        className="mt-16 flex flex-col items-center gap-4 lg:mt-0 lg:items-start"
       >
         {projects.map((project, i) => {
           return (

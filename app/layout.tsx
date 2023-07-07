@@ -41,7 +41,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <NextTopLoader color="#fff" />
-          <main className="relative h-screen justify-between pl-16 pr-8 pt-6">
+          <main className="relative h-screen justify-between pl-4 pr-2 pt-6">
             <div>
               <Header />
               {children}
