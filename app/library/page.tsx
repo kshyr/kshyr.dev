@@ -32,14 +32,16 @@ export default function Page() {
           {projects.map((project) => {
             return (
               <TableRow key={project.handle} className="text-[16px]">
-                <TableCell className="py-5 font-medium">
+                <TableCell className="py-5 font-semibold">
                   {project.title}
                 </TableCell>
-                <TableCell>
+                <TableCell className="text-[14px]">
                   {project.type.charAt(0).toUpperCase() +
                     project.type.substring(1)}
                 </TableCell>
-                <TableCell>{project.tags?.join(", ")}</TableCell>
+                <TableCell className="text-[14px]">
+                  {project.tags?.join(", ")}
+                </TableCell>
                 <TableCell>
                   <Link href={"/" + project.handle}>/{project.handle}</Link>
                 </TableCell>
