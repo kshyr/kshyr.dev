@@ -8,6 +8,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    remotePatterns: [{ hostname: "upload.wikimedia.org" }],
+  },
+  async rewrites() {
+    return [{ source: "/skills", destination: "/" }];
+  },
 };
 
 export default nextMDX({

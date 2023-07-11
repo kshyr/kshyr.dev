@@ -4,9 +4,13 @@ import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import Name from "@/components/Name";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
+import { skills } from "@/lib/data/skills";
+import { cn } from "@/lib/utils";
+import Skills from "@/components/Skills";
 
 const nameVariants: Variants = {
   initial: {
