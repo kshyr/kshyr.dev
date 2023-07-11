@@ -81,38 +81,49 @@ export default function Home() {
       animate={{ opacity: 1 }}
       className="flex flex-col justify-between py-4 lg:flex-row"
     >
-      <section className="flex flex-col items-center gap-1 lg:items-start">
-        <motion.h2
-          variants={animReady ? titleVariants : undefined}
-          initial="initial"
-          animate="animate"
-          className="text-[15px] font-semibold text-muted-foreground sm:text-xl"
-        >
-          Frontend Engineer{" "}
-          <em className="text-sm text-muted-foreground/80">@ Stealth</em>
-        </motion.h2>
-        <motion.h1
-          variants={animReady ? nameVariants : undefined}
-          initial="initial"
-          animate="animate"
-          className="whitespace-nowrap font-display text-3xl font-bold leading-4 tracking-tight sm:text-[2.5rem] sm:leading-[2.75rem]"
-        >
-          <Name />
-        </motion.h1>
-        <motion.p
-          variants={animReady ? introVariants : undefined}
-          initial="initial"
-          animate="animate"
-          className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
-        >
-          I specialize in{" "}
-          <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
-            web development
-          </strong>{" "}
-          - bringing designs and ideas to life, and always doing my best to make
-          experience both <Accessible /> and <Memorable /> to the end user.
-        </motion.p>
-      </section>
+      <div className="flex flex-col gap-8">
+        <section className="flex flex-col items-center gap-1 lg:items-start">
+          <motion.h2
+            variants={animReady ? titleVariants : undefined}
+            initial="initial"
+            animate="animate"
+            className="text-[15px] font-semibold text-muted-foreground sm:text-xl"
+          >
+            Frontend Engineer{" "}
+            <em className="text-sm text-muted-foreground/80">@ Stealth</em>
+          </motion.h2>
+          <motion.h1
+            variants={animReady ? nameVariants : undefined}
+            initial="initial"
+            animate="animate"
+            className="whitespace-nowrap font-display text-3xl font-bold leading-4 tracking-tight sm:text-[2.5rem] sm:leading-[2.75rem]"
+          >
+            <Name />
+          </motion.h1>
+          <motion.p
+            variants={animReady ? introVariants : undefined}
+            initial="initial"
+            animate="animate"
+            className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
+          >
+            I specialize in{" "}
+            <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
+              web development
+            </strong>{" "}
+            - bringing designs and ideas to life, and always doing my best to
+            make experience both <Accessible /> and <Memorable /> to the end
+            user.
+          </motion.p>
+        </section>
+        <section className="flex max-w-md flex-col gap-1">
+          {/* <span className="text-xs italic text-muted-foreground"> */}
+          {/*   Click tag to open projects */}
+          {/* </span> */}
+          <div className="flex w-fit flex-wrap gap-1">
+            <Skills />
+          </div>
+        </section>
+      </div>
       <motion.section
         variants={animReady ? projectsVariants : undefined}
         initial="initial"
