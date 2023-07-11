@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const animRefreshMins = 1;
+const animRefreshMins = 10;
 
 export function useLastVisited(pathname: string) {
   const [isEvaluated, setIsEvaluated] = useState(false);

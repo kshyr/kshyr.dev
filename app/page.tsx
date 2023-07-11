@@ -8,9 +8,11 @@ import Image from "next/image";
 import Name from "@/components/Name";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
-import { skills } from "@/lib/data/skills";
+import { skills } from "@/app/skills";
 import { cn } from "@/lib/utils";
 import Skills from "@/components/Skills";
+import SkillTag from "@/components/Skills";
+import { Skill } from "./skills";
 
 const nameVariants: Variants = {
   initial: {
@@ -71,6 +73,19 @@ const projectsVariants: Variants = {
   },
 };
 
+const skillVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      delayChildren: projectsSectionDelay,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
 export default function Home() {
   const pathname = usePathname();
   const { isEvaluated, animReady } = useLastVisited(pathname);
@@ -120,9 +135,22 @@ export default function Home() {
           {/* <span className="text-xs italic text-muted-foreground"> */}
           {/*   Click tag to open projects */}
           {/* </span> */}
-          <div className=" flex max-w-md flex-wrap justify-center gap-1 lg:justify-start">
-            <Skills />
-          </div>
+          <motion.div
+            variants={animReady ? skillVariants : undefined}
+            initial="initial"
+            animate="animate"
+            className="flex max-w-md flex-wrap justify-center gap-1 lg:justify-start"
+          >
+            {skills.map((skill: Skill) => {
+              return (
+                <SkillTag
+                  skill={skill}
+                  skillVariants={skillVariants}
+                  key={skill.name}
+                />
+              );
+            })}
+          </motion.div>
         </section>
       </div>
       <motion.section

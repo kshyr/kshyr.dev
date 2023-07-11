@@ -1,24 +1,21 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
+  Variants,
   motion,
   useMotionTemplate,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { skills, Skill } from "@/app/skills";
+import { Skill } from "@/app/skills";
 
-export default function Skills() {
-  return (
-    <>
-      {skills.map((skill) => {
-        return <SkillTag skill={skill} key={skill.name} />;
-      })}
-    </>
-  );
-}
-
-function SkillTag({ skill }: { skill: Skill }) {
+export default function SkillTag({
+  skill,
+  skillVariants,
+}: {
+  skill: Skill;
+  skillVariants: Variants;
+}) {
   const x = useSpring(0.5, { stiffness: 10000, damping: 500 });
   const y = useSpring(0.5, { stiffness: 10000, damping: 500 });
   const rotateX = useTransform(y, [0, 1], [15, -15]);
@@ -87,20 +84,50 @@ function SkillTag({ skill }: { skill: Skill }) {
         x.set(0.5);
         y.set(0.5);
       }}
+      variants={skillVariants}
       className="flex cursor-pointer select-none items-center gap-2 rounded-md border border-border px-2 py-1 transition-colors dark:bg-primary/5 dark:hover:bg-primary/10"
     >
-      <Image
-        draggable={false}
-        src={skill.logoSrc}
-        alt={skill.name + " logo"}
-        width={skill.customWidth ?? 24}
-        height={skill.customHeight ?? 24}
-        className={cn(
-          "m-0 rounded-none border-none shadow-none",
-          skill?.twClasses
-        )}
-      />
-      <span className="font-display text-[15px] font-normal">{skill.name}</span>
+      <motion.div
+        style={{
+          x: useTransform(x, [0, 1], [-3, 4]),
+          y: useTransform(y, [0, 1], [-3, 4]),
+          filter: useMotionTemplate`drop-shadow(${useTransform(
+            x,
+            [0, 1],
+            [0.2, -0.4]
+          )}px ${useTransform(y, [0, 1], [0.2, -0.4])}px 2px rgba(0,0,0,0.4))`,
+          rotateX: useTransform(rotateX, [12, -12], [1, -1]),
+          rotateY: useTransform(rotateY, [-12, 12], [-1, 1]),
+        }}
+      >
+        <Image
+          draggable={false}
+          src={skill.logoSrc}
+          alt={skill.name + " logo"}
+          width={skill.customWidth ?? 24}
+          height={skill.customHeight ?? 24}
+          className={cn(
+            "m-0 rounded-none border-none shadow-none",
+            skill?.twClasses
+          )}
+        />
+      </motion.div>
+      <motion.span
+        style={{
+          x: useTransform(x, [0, 1], [-2, 3]),
+          y: useTransform(y, [0, 1], [-2, 3]),
+          rotateX: useTransform(rotateX, [12, -12], [1, -1]),
+          rotateY: useTransform(rotateY, [-12, 12], [-1, 1]),
+          filter: useMotionTemplate`drop-shadow(${useTransform(
+            x,
+            [0, 1],
+            [0.2, -0.4]
+          )}px ${useTransform(y, [0, 1], [0.2, -0.4])}px 1px rgba(0,0,0,0.3))`,
+        }}
+        className="font-display text-[15px] font-normal"
+      >
+        {skill.name}
+      </motion.span>
     </motion.div>
   );
 }
