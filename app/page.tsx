@@ -171,6 +171,7 @@ export default function Home() {
               variants={projectsVariants}
               index={i}
               delay={projectsSectionDelay}
+              animReady={animReady}
             />
           );
         })}

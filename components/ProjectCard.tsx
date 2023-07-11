@@ -14,6 +14,7 @@ interface MotionProps {
   variants: Variants;
   index: number;
   delay: number;
+  animReady: boolean;
 }
 
 type ProjectCardProps = Partial<Project> & MotionProps;
@@ -27,12 +28,10 @@ export default function ProjectCard({
   variants,
   index,
   delay,
+  animReady,
 }: ProjectCardProps) {
   const [animationDone, setAnimationDone] = useState(false);
   const pathname = usePathname();
-  const { isEvaluated, animReady } = useLastVisited(pathname);
-
-  if (!isEvaluated) return null;
 
   const fullAnimationTime = 0.65;
   const fullAnimationDelay = delay + fullAnimationTime * index;
