@@ -28,8 +28,12 @@ export default function ProjectCard({
   index,
   delay,
 }: ProjectCardProps) {
+  const [animationDone, setAnimationDone] = useState(false);
   const pathname = usePathname();
-  const { lastVisitedDiffMins, animReady } = useLastVisited(pathname);
+  const { isEvaluated, animReady } = useLastVisited(pathname);
+
+  if (!isEvaluated) return null;
+
   const fullAnimationTime = 0.65;
   const fullAnimationDelay = delay + fullAnimationTime * index;
 
@@ -69,8 +73,6 @@ export default function ProjectCard({
       },
     },
   };
-
-  const [animationDone, setAnimationDone] = useState(false);
 
   return (
     <Link

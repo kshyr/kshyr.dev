@@ -6,7 +6,7 @@ import { useLastVisited } from "@/lib/hooks/useLastVisited";
 
 export default function Page({ params }: { params: { project: string } }) {
   const pathname = usePathname();
-  const { animReady } = useLastVisited(pathname);
+  const { isEvaluated, animReady } = useLastVisited(pathname);
   const project = projects.find((i) => i.handle === params.project);
 
   return (

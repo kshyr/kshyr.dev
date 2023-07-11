@@ -73,8 +73,9 @@ const projectsVariants: Variants = {
 
 export default function Home() {
   const pathname = usePathname();
-  const { animReady } = useLastVisited(pathname);
+  const { isEvaluated, animReady } = useLastVisited(pathname);
 
+  if (!isEvaluated) return null;
   return (
     <motion.main
       initial={{ opacity: 0 }}

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
-const animRefreshMins = 10;
+const animRefreshMins = 1;
 
 export function useLastVisited(pathname: string) {
-  const [lastVisitedDiffMins, setLastVisitedDiffMins] = useState(0);
+  const [isEvaluated, setIsEvaluated] = useState(false);
+  const [animReady, setAnimReady] = useState(false);
 
   useEffect(() => {
     const calculateDiffInMinutes = (date1: Date, date2: Date) => {
@@ -15,18 +16,22 @@ export function useLastVisited(pathname: string) {
       `lastVisited_${pathname}`
     );
 
-    if (lastVisitedTimeString) {
-      const lastVisitedTime = new Date(lastVisitedTimeString);
-      const currentTime = new Date();
-      const diffMins = calculateDiffInMinutes(currentTime, lastVisitedTime);
-      setLastVisitedDiffMins(diffMins);
+    if (
+      lastVisitedTimeString &&
+      calculateDiffInMinutes(new Date(), new Date(lastVisitedTimeString)) >=
+      animRefreshMins
+    ) {
+      setAnimReady(true);
+      localStorage.setItem(`lastVisited_${pathname}`, new Date().toString());
+    } else {
+      localStorage.setItem(`lastVisited_${pathname}`, new Date().toString());
     }
 
-    localStorage.setItem(`lastVisited_${pathname}`, new Date().toString());
+    setIsEvaluated(true);
   }, [pathname]);
 
   return {
-    lastVisitedDiffMins,
-    animReady: lastVisitedDiffMins >= animRefreshMins,
+    animReady,
+    isEvaluated,
   };
 }
