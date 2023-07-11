@@ -37,9 +37,10 @@ export default function Header() {
         {navItems.map((navItem) => {
           return (
             <Link
+              draggable={false}
               key={navItem.name}
               href={navItem.href}
-              className="cursor-default no-underline"
+              className="cursor-default select-none no-underline"
             >
               <span
                 className={cn(

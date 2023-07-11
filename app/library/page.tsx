@@ -25,7 +25,7 @@ export default function Page() {
         <TableCaption>A list of my projects.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="pl-5">Title</TableHead>
+            <TableHead className="sm:pl-5">Title</TableHead>
             <TableHead>Type</TableHead>
             <TableHead className="text-right md:text-left">Tags</TableHead>
           </TableRow>
@@ -41,7 +41,7 @@ export default function Page() {
                   router.push(`/${project.handle}`);
                 }}
               >
-                <TableCell className="py-5 pl-5 font-semibold">
+                <TableCell className="py-5 font-semibold sm:pl-5">
                   {project.title}
                 </TableCell>
                 <TableCell className="text-[14px]">
