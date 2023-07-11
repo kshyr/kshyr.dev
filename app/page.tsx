@@ -115,11 +115,11 @@ export default function Home() {
             user.
           </motion.p>
         </section>
-        <section className="flex max-w-md flex-col gap-1">
+        <section className="flex flex-col items-center gap-1 lg:items-start">
           {/* <span className="text-xs italic text-muted-foreground"> */}
           {/*   Click tag to open projects */}
           {/* </span> */}
-          <div className="flex w-fit flex-wrap gap-1">
+          <div className=" flex max-w-md flex-wrap justify-center gap-1 lg:justify-start">
             <Skills />
           </div>
         </section>
