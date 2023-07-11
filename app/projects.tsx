@@ -19,16 +19,18 @@ export const projects: Project[] = [
     description: "Minimalistic bookmark manager written in Rust.",
     tags: ["Rust"],
   },
-  // {
-  //   handle: "ui-crates",
-  //   type: "project",
-  //   title: "UI-crates",
-  //   description: "Social media for sharing UI components.",
-  //   tags: ["TypeScript", "React", "Next.js", "tRPC", "Tailwind CSS"],
-  // },
+  {
+    handle: "ui-crates",
+    type: "project",
+    subtype: "web",
+    title: "UI-crates",
+    description: "Social media for sharing UI components.",
+    tags: ["TypeScript", "React", "Next.js", "tRPC", "Tailwind CSS"],
+  },
   {
     handle: "next-13-sanity",
     type: "project",
+    subtype: "web",
     title: "Next 13 + Sanity.io",
     description:
       "Purpose of this project was to make others' lives easier and provide a quick way to start a project with Sanity Studio (admin panel for CMS) and be deploy-ready.",

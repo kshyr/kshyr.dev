@@ -15,6 +15,7 @@ type Image = {
 export type Project = {
     handle?: string;
     type: "project" | "blog";
+    subtype?: "web";
     title: string;
     description: string;
     tags?: string[];

@@ -47,6 +47,10 @@ export default function Page() {
                 <TableCell className="text-[14px]">
                   {project.type.charAt(0).toUpperCase() +
                     project.type.substring(1)}
+                  {project.subtype &&
+                    ", " +
+                    project.subtype.charAt(0).toUpperCase() +
+                    project.subtype.substring(1)}
                 </TableCell>
                 <TableCell className="text-right text-[14px]  md:text-left">
                   {project.tags?.join(", ")}
