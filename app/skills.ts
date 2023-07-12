@@ -32,7 +32,7 @@ export const skills: Skill[] = [
         twClasses: "invert-0 dark:invert",
     },
     {
-        name: "Tailwind",
+        name: "Tailwind CSS",
         logoSrc:
             "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
     },

@@ -91,6 +91,14 @@ export default function Home() {
   const { isEvaluated, animReady } = useLastVisited(pathname);
 
   if (!isEvaluated) return null;
+
+  function highlight(text: string) {
+    return (
+      <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
+        {text}
+      </strong>
+    );
+  }
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -116,20 +124,25 @@ export default function Home() {
           >
             <Name />
           </motion.h1>
-          <motion.p
+          <motion.div
             variants={animReady ? introVariants : undefined}
             initial="initial"
             animate="animate"
             className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
           >
-            I specialize in{" "}
-            <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
-              web development
-            </strong>{" "}
-            - bringing designs and ideas to life, and always doing my best to
-            make experience both <Accessible /> and <Memorable /> to the end
-            user.
-          </motion.p>
+            <p>
+              I specialize in {highlight("web development")} - bringing designs
+              and ideas to life, and always doing my best to make experience
+              both <Accessible /> and <Memorable /> to the end user.
+            </p>
+            <p>
+              I'm also passionate about other areas of software, such as{" "}
+              {highlight("embedded engineering")},{" "}
+              {highlight("game development")}, and I'm actively learning about
+              low-level programming to apply my {highlight("computer science")}{" "}
+              knowledge where performance is critical.
+            </p>
+          </motion.div>
         </section>
         <section className="flex flex-col items-center gap-1 lg:items-start">
           {/* <span className="text-xs italic text-muted-foreground"> */}
@@ -139,7 +152,7 @@ export default function Home() {
             variants={animReady ? skillVariants : undefined}
             initial="initial"
             animate="animate"
-            className="flex max-w-md flex-wrap justify-center gap-1 lg:justify-start"
+            className="flex max-w-sm flex-wrap justify-center gap-1 lg:justify-start"
           >
             {skills.map((skill: Skill) => {
               return (
