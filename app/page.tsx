@@ -142,10 +142,10 @@ export default function Home() {
               user.
             </p>
             <p className="mt-6">
-              I'm also passionate about other areas of software, such as{" "}
-              embedded engineering, game development, and I'm actively learning
-              about low-level programming to apply my computer science knowledge
-              where performance is critical.
+              I&apos;m also passionate about other areas of software, such as
+              embedded engineering, game development, and I&apos;m actively
+              learning about low-level programming to apply my computer science
+              knowledge where performance is critical.
             </p>
           </motion.div>
         </section>
