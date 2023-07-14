@@ -1,12 +1,12 @@
 "use client";
 
-import GitHubLink from "./GitHubLink";
-import DevDotToLink from "./DevDotToLink";
+import GitHubLink from "./links/GitHubLink";
+import LinkedInLink from "./links/LinkedInLink";
+import DevDotToLink from "./links/DevDotToLink";
+
 import { RefObject, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import LinkedInLink from "./LinkedInLink";
 
 export default function Footer({
   contentRef,

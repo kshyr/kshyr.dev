@@ -4,15 +4,14 @@ import ProjectCard from "@/components/ProjectCard";
 import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import Name from "@/components/Name";
+import Name from "@/components/interactive-words/Name";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
 import { skills } from "@/app/skills";
 import { cn } from "@/lib/utils";
-import Skills from "@/components/Skills";
 import SkillTag from "@/components/Skills";
 import { Skill } from "./skills";
+import Link from "next/link";
 
 const nameVariants: Variants = {
   initial: {
@@ -94,7 +93,7 @@ export default function Home() {
 
   function highlight(text: string) {
     return (
-      <strong className="cursor-pointer underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
+      <strong className="underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary">
         {text}
       </strong>
     );
@@ -131,16 +130,22 @@ export default function Home() {
             className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
           >
             <p>
-              I specialize in {highlight("web development")} - bringing designs
-              and ideas to life, and always doing my best to make experience
-              both <Accessible /> and <Memorable /> to the end user.
+              I specialize in{" "}
+              <Link
+                href="/library"
+                className="text-muted-foreground dark:text-muted-foreground"
+              >
+                {highlight("web development")}
+              </Link>{" "}
+              - bringing designs and ideas to life, and always doing my best to
+              make experience both <Accessible /> and <Memorable /> to the end
+              user.
             </p>
-            <p>
+            <p className="mt-6">
               I'm also passionate about other areas of software, such as{" "}
-              {highlight("embedded engineering")},{" "}
-              {highlight("game development")}, and I'm actively learning about
-              low-level programming to apply my {highlight("computer science")}{" "}
-              knowledge where performance is critical.
+              embedded engineering, game development, and I'm actively learning
+              about low-level programming to apply my computer science knowledge
+              where performance is critical.
             </p>
           </motion.div>
         </section>
