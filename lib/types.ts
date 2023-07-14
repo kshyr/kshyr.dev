@@ -13,7 +13,7 @@ type Image = {
 };
 
 export type Project = {
-    handle?: string;
+    handle: string;
     type: "project" | "blog";
     subtype?: "web";
     title: string;

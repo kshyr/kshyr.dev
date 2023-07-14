@@ -7,6 +7,7 @@ export function useLastVisited(pathname: string) {
   const [animReady, setAnimReady] = useState(false);
 
   useEffect(() => {
+    setIsEvaluated(false);
     if (!isEvaluated) {
       const calculateDiffInMinutes = (date1: Date, date2: Date) => {
         const diffInMs = Math.abs(date1.getTime() - date2.getTime());
@@ -37,7 +38,7 @@ export function useLastVisited(pathname: string) {
 
       setIsEvaluated(true);
     }
-  }, []);
+  }, [pathname]);
 
   return {
     animReady,

@@ -4,9 +4,10 @@ import GitHubLink from "./links/GitHubLink";
 import LinkedInLink from "./links/LinkedInLink";
 import DevDotToLink from "./links/DevDotToLink";
 
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useLastVisited } from "@/lib/hooks/useLastVisited";
 
 export default function Footer({
   contentRef,
@@ -15,27 +16,31 @@ export default function Footer({
 }) {
   const [isAbsolute, setIsAbsolute] = useState(true);
   const pathname = usePathname();
+  const { isEvaluated } = useLastVisited(pathname);
   const footerRef = useRef<HTMLDivElement>(null);
 
+  const handleResize = useCallback(() => {
+    if (footerRef.current && contentRef.current) {
+      const contentHeight = contentRef.current.offsetHeight;
+      const footerHeight = footerRef.current.offsetHeight;
+      const windowHeight = document.documentElement.clientHeight;
+      console.log({ contentHeight, windowHeight });
+      setIsAbsolute(contentHeight + footerHeight <= windowHeight);
+    }
+  }, [contentRef]);
+
   useEffect(() => {
-    const handleResize = () => {
-      if (footerRef.current && contentRef.current) {
-        const contentHeight = contentRef.current.offsetHeight;
-        const footerHeight = footerRef.current.offsetHeight;
-        const windowHeight = document.documentElement.clientHeight;
-        console.log({ contentHeight, windowHeight });
-        setIsAbsolute(contentHeight + footerHeight <= windowHeight);
-      }
-    };
-
     handleResize();
+  }, [pathname, contentRef, footerRef, handleResize, isEvaluated]);
 
+  useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [pathname, contentRef, footerRef]);
+  }, [handleResize]);
 
   return (
     <footer

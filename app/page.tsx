@@ -5,6 +5,7 @@ import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
 import Name from "@/components/interactive-words/Name";
+import { ArrowRight } from "lucide-react";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
 import { skills } from "@/app/skills";
@@ -84,6 +85,8 @@ const skillVariants: Variants = {
     },
   },
 };
+
+const featuredHandles = ["vec", "linkstash", "ui-crates", "next-13-sanity"];
 
 export default function Home() {
   const pathname = usePathname();
@@ -177,22 +180,33 @@ export default function Home() {
         animate="animate"
         className="mt-16 flex flex-col items-center gap-4 lg:mt-0 lg:items-start"
       >
-        {projects.map((project, i) => {
-          return (
-            <ProjectCard
-              key={project.title}
-              handle={project.handle}
-              type={project.type}
-              title={project.title}
-              description={project.description}
-              tags={project.tags}
-              variants={projectsVariants}
-              index={i}
-              delay={projectsSectionDelay}
-              animReady={animReady}
-            />
-          );
-        })}
+        {projects
+          .filter((p) => featuredHandles.includes(p.handle))
+          .map((project, i) => {
+            return (
+              <ProjectCard
+                key={project.title}
+                handle={project.handle}
+                type={project.type}
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                variants={projectsVariants}
+                index={i}
+                delay={projectsSectionDelay}
+                animReady={animReady}
+              />
+            );
+          })}
+        <Link
+          href="/library"
+          className={cn(
+            "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end",
+            "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
+          )}
+        >
+          See more <ArrowRight size={18} />
+        </Link>
       </motion.section>
     </motion.main>
   );
