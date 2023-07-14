@@ -15,32 +15,33 @@ export default function Footer({
   contentRef: RefObject<HTMLDivElement>;
 }) {
   const [isAbsolute, setIsAbsolute] = useState(true);
-  const pathname = usePathname();
-  const { isEvaluated } = useLastVisited(pathname);
   const footerRef = useRef<HTMLDivElement>(null);
 
-  const handleResize = useCallback(() => {
+  function handleResize() {
     if (footerRef.current && contentRef.current) {
       const contentHeight = contentRef.current.offsetHeight;
       const footerHeight = footerRef.current.offsetHeight;
-      const windowHeight = document.documentElement.clientHeight;
-      console.log({ contentHeight, windowHeight });
+      const windowHeight = window.innerHeight;
+      console.log({ contentHeight, footerHeight, windowHeight });
       setIsAbsolute(contentHeight + footerHeight <= windowHeight);
     }
-  }, [contentRef]);
+  }
 
   useEffect(() => {
     handleResize();
-  }, [pathname, contentRef, footerRef, handleResize, isEvaluated]);
 
-  useEffect(() => {
-    handleResize();
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (contentRef.current) {
+      resizeObserver.observe(contentRef.current);
+    }
+
     window.addEventListener("resize", handleResize);
 
     return () => {
+      resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
     };
-  }, [handleResize]);
+  }, [contentRef]);
 
   return (
     <footer

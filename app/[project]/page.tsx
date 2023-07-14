@@ -10,6 +10,7 @@ export default function Page({ params }: { params: { project: string } }) {
   const { isEvaluated, animReady } = useLastVisited(pathname);
   const project = projects.find((i) => i.handle === params.project);
 
+  if (!isEvaluated) return null;
   return (
     <motion.div
       initial={{ opacity: 0 }}
