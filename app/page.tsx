@@ -133,13 +133,11 @@ export default function Home() {
             className="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left"
           >
             <p>
-              I specialize in{" "}
-              <Link
-                href="/library"
-                className="text-muted-foreground dark:text-muted-foreground"
-              >
-                {highlight("web development")}
-              </Link>{" "}
+              I specialize in {/* <Link */}
+              {/*   href="/library" */}
+              {/*   className="text-muted-foreground dark:text-muted-foreground" */}
+              {/* > */}
+              {highlight("web development")} {/* </Link>{" "} */}
               - bringing designs and ideas to life, and always doing my best to
               make experience both <Accessible /> and <Memorable /> to the end
               user.
@@ -198,15 +196,15 @@ export default function Home() {
               />
             );
           })}
-        <Link
-          href="/library"
-          className={cn(
-            "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end",
-            "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
-          )}
-        >
-          See more <ArrowRight size={18} />
-        </Link>
+        {/* <Link */}
+        {/*   href="/library" */}
+        {/*   className={cn( */}
+        {/*     "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end", */}
+        {/*     "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70" */}
+        {/*   )} */}
+        {/* > */}
+        {/*   See more <ArrowRight size={18} /> */}
+        {/* </Link> */}
       </motion.section>
     </motion.main>
   );

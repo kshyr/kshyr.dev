@@ -9,18 +9,18 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  {
-    name: "Home",
-    href: "/",
-  },
   // {
-  //   name: "About",
-  //   href: "/about",
+  //   name: "Home",
+  //   href: "/",
   // },
-  {
-    name: "Library",
-    href: "/library",
-  },
+  // // {
+  // //   name: "About",
+  // //   href: "/about",
+  // // },
+  // {
+  //   name: "Library",
+  //   href: "/library",
+  // },
 ];
 
 export default function Header() {
