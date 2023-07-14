@@ -81,7 +81,7 @@ const skillVariants: Variants = {
     opacity: 1,
     transition: {
       delayChildren: projectsSectionDelay,
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };

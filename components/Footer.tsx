@@ -5,6 +5,8 @@ import DevDotToLink from "./DevDotToLink";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import LinkedInLink from "./LinkedInLink";
 
 export default function Footer({
   contentRef,
@@ -47,6 +49,7 @@ export default function Footer({
         ©2023 Kostiantyn Shyrolapov
       </span>
       <div className="flex h-full items-center">
+        <LinkedInLink />
         <DevDotToLink />
         <GitHubLink />
       </div>
