@@ -1,5 +1,6 @@
 import "./globals.css";
 import "@code-hike/mdx/dist/index.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter, Roboto_Mono, Lexend_Deca } from "next/font/google";
 import PageWrapper from "@/components/PageWrapper";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl `}
       >
         <PageWrapper>{children}</PageWrapper>
+        <Analytics />
       </body>
     </html>
   );
