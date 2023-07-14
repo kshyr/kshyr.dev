@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type Link = {
+export type Link = {
     title: string;
     url: string;
     icon?: string | ReactNode;
@@ -21,6 +21,5 @@ export type Project = {
     tags?: string[];
     previewUrl?: string;
     links?: Link[];
-    images?: Image[];
     bodyMarkdown?: ReactNode;
 };

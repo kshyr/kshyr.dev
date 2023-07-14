@@ -86,7 +86,7 @@ const skillVariants: Variants = {
   },
 };
 
-const featuredHandles = ["vec", "linkstash", "ui-crates", "next-13-sanity"];
+const featuredHandles = ["ui-crates", "digital-garden", "linkstash", "vec"];
 
 export default function Home() {
   const pathname = usePathname();

@@ -85,7 +85,7 @@ export default function SkillTag({
         y.set(0.5);
       }}
       variants={skillVariants}
-      className="flex cursor-pointer select-none items-center gap-2 rounded-md border border-border px-2 py-1 transition-colors dark:bg-primary/5 dark:hover:bg-primary/10"
+      className="flex select-none items-center gap-2 rounded-md border border-border px-2 py-1 transition-colors dark:bg-primary/5 dark:hover:bg-primary/10"
     >
       <motion.div
         style={{
