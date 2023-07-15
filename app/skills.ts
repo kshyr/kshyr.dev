@@ -41,29 +41,24 @@ export const skills: Skill[] = [
     //     logoSrc:
     //         "https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg",
     // },
-    {
-        name: "Go",
-        logoSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg",
-        customHeight: 30,
-        customWidth: 30,
-    },
-    {
-        name: "Rust",
-        logoSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg",
-        twClasses: "invert-0 dark:invert",
-    },
-    {
-        name: "PostgreSQL",
-        logoSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg",
-    },
+    // {
+    //     name: "Go",
+    //     logoSrc:
+    //         "https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg",
+    //     customHeight: 30,
+    //     customWidth: 30,
+    // },
+
     {
         name: "MySQL",
         logoSrc: "/mysql.png",
         customHeight: 30,
         customWidth: 30,
+    },
+    {
+        name: "PostgreSQL",
+        logoSrc:
+            "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg",
     },
     {
         name: "GraphQL",
@@ -80,5 +75,11 @@ export const skills: Skill[] = [
     {
         name: "AWS",
         logoSrc: "/aws_containers.png",
+    },
+    {
+        name: "Rust",
+        logoSrc:
+            "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg",
+        twClasses: "invert-0 dark:invert",
     },
 ];

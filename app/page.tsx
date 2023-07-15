@@ -5,14 +5,14 @@ import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
 import Name from "@/components/interactive-words/Name";
-// import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
 import { skills } from "@/app/skills";
-// import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import SkillTag from "@/components/Skills";
 import { Skill } from "./skills";
-// import Link from "next/link";
+import Link from "next/link";
 
 const nameVariants: Variants = {
   initial: {
@@ -196,15 +196,15 @@ export default function Home() {
               />
             );
           })}
-        {/* <Link */}
-        {/*   href="/library" */}
-        {/*   className={cn( */}
-        {/*     "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end", */}
-        {/*     "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70" */}
-        {/*   )} */}
-        {/* > */}
-        {/*   See more <ArrowRight size={18} /> */}
-        {/* </Link> */}
+        <Link
+          href="/library"
+          className={cn(
+            "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end",
+            "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
+          )}
+        >
+          See more <ArrowRight size={18} />
+        </Link>
       </motion.section>
     </motion.main>
   );

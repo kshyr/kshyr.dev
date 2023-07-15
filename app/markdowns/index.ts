@@ -11,6 +11,7 @@ import RayTracer from "./ray-tracer-rs.mdx";
 import Spreadsheet from "./solid-spreadsheet.mdx";
 import UICrates from "./ui-crates.mdx";
 import GoSvelte from "./go-svelte-todo.mdx";
+import Next13Sanity from "./next-13-sanity.mdx";
 
 export {
   Vec,
@@ -26,4 +27,5 @@ export {
   Spreadsheet,
   UICrates,
   GoSvelte,
+  Next13Sanity,
 };

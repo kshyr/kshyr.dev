@@ -14,6 +14,7 @@ import {
   Spreadsheet,
   UICrates,
   GoSvelte,
+  Next13Sanity,
 } from "./markdowns";
 import { Github, ExternalLink } from "lucide-react";
 import { ReactNode } from "react";
@@ -110,15 +111,17 @@ export const projects: Project[] = [
     links: [devToLink("https://dev.to/kshyr/implementing-vec-in-rust-1e2i")],
     bodyMarkdown: <Vec />,
   },
-  // {
-  //   handle: "next-13-sanity",
-  //   type: "project",
-  //   subtype: "web",
-  //   title: "Next 13 + Sanity.io",
-  //   description:
-  //     "Purpose of this project was to make others' lives easier and provide a quick way to start a project with Sanity Studio (admin panel for CMS) and be deploy-ready.",
-  //   tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
-  // },
+  {
+    handle: "next-13-sanity",
+    type: "project",
+    subtype: "web",
+    title: "Next.js 13 + Sanity.io",
+    description:
+      "Quick-start your Next.js 13 project with Sanity Studio and Preview Mode",
+    tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
+    links: [gitHubLink("https://github.com/kshyr/next-13-sanity")],
+    bodyMarkdown: <Next13Sanity />,
+  },
   // {
   //   handle: "terrarium",
   //   type: "project",
@@ -135,24 +138,32 @@ export const projects: Project[] = [
   //   tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
   //   bodyMarkdown: <Spotlight />,
   // },
-  // {
-  //   handle: "gitlobby",
-  //   type: "project",
-  //   subtype: "web",
-  //   title: "GitLobby",
-  //   description: "Godot 4.0 game",
-  //   tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
-  //   bodyMarkdown: <GitLobby />,
-  // },
-  // {
-  //   handle: "any-store",
-  //   type: "project",
-  //   subtype: "web",
-  //   title: "Any Store",
-  //   description: "Godot 4.0 game",
-  //   tags: ["TypeScript", "React", "Next.js", "Sanity CMS"],
-  //   bodyMarkdown: <AnyStore />,
-  // },
+  {
+    handle: "gitlobby",
+    type: "project",
+    subtype: "web",
+    title: "GitLobby",
+    description: "Search GitHub repositories with infinite scroll.",
+    tags: ["TypeScript", "React", "Next.js"],
+    links: [
+      gitHubLink("https://github.com/kshyr/gitlobby"),
+      liveLink("https://gitlobby.vercel.app/"),
+    ],
+    bodyMarkdown: <GitLobby />,
+  },
+  {
+    handle: "any-store",
+    type: "project",
+    subtype: "web",
+    title: "Any Store",
+    description: "Showcase of e-commerce functionality.",
+    tags: ["TypeScript", "React", "Tailwind CSS", "Zustand"],
+    links: [
+      gitHubLink("https://github.com/kshyr/any-store"),
+      liveLink("https://any-store.vercel.app/"),
+    ],
+    bodyMarkdown: <AnyStore />,
+  },
   // {
   //   handle: "chip-8",
   //   type: "project",
