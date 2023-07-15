@@ -199,7 +199,7 @@ export default function Home() {
         <Link
           href="/library"
           className={cn(
-            "ml-60 flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors lg:mr-16 lg:self-end",
+            "flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors  lg:self-end",
             "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
           )}
         >
