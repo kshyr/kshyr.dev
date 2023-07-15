@@ -33,7 +33,7 @@ export default function ProjectCard({
   const [animationDone, setAnimationDone] = useState(false);
   const pathname = usePathname();
 
-  const fullAnimationTime = 0.65;
+  const fullAnimationTime = 0.55;
   const fullAnimationDelay = delay + fullAnimationTime * index;
 
   const titleVariants: Variants = {
@@ -55,7 +55,7 @@ export default function ProjectCard({
     animate: {
       opacity: 1,
       transition: {
-        delay: 0.25 + fullAnimationDelay,
+        delay: 0.1 + fullAnimationDelay,
       },
     },
   };
@@ -67,8 +67,8 @@ export default function ProjectCard({
     animate: {
       opacity: 1,
       transition: {
-        delayChildren: 0.4 + fullAnimationDelay,
-        staggerChildren: 0.1,
+        delayChildren: 0.15 + fullAnimationDelay,
+        staggerChildren: 0.08,
       },
     },
   };

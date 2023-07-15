@@ -4,10 +4,8 @@ import GitHubLink from "./links/GitHubLink";
 import LinkedInLink from "./links/LinkedInLink";
 import DevDotToLink from "./links/DevDotToLink";
 
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import { useLastVisited } from "@/lib/hooks/useLastVisited";
 
 export default function Footer({
   contentRef,

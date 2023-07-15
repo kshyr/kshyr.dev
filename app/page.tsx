@@ -5,14 +5,14 @@ import { Variants, motion } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
 import { usePathname } from "next/navigation";
 import Name from "@/components/interactive-words/Name";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { Memorable } from "@/components/interactive-words/Memorable";
 import { Accessible } from "@/components/interactive-words/Accessible";
 import { skills } from "@/app/skills";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import SkillTag from "@/components/Skills";
 import { Skill } from "./skills";
-import Link from "next/link";
+// import Link from "next/link";
 
 const nameVariants: Variants = {
   initial: {
@@ -68,7 +68,7 @@ const projectsVariants: Variants = {
     opacity: 1,
     transition: {
       delay: projectsSectionDelay,
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
