@@ -1,17 +1,48 @@
 "use client";
-import { projects } from "../projects";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { getBlogPost } from "@/sanity/lib/queries";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useLastVisited } from "@/lib/hooks/useLastVisited";
-import { Button } from "@/components/ui/button";
+import rehypeHighlight from "rehype-highlight";
 
-export default function Page({ params }: { params: { project: string } }) {
-  const pathname = usePathname();
-  const { isEvaluated, animReady } = useLastVisited(pathname);
+async function getMarkdown(url: string) {
+  const data = await fetch(url).then((res) => res.text());
+  const mdxSource = await serialize(data, {
+    mdxOptions: {
+      development: process.env.NODE_ENV === "development",
+      rehypePlugins: [rehypeHighlight as any],
+    },
+  });
+  return mdxSource;
+}
 
-  if (!isEvaluated) return null;
+export default function ProjectPage({
+  params,
+}: {
+  params: { project: string };
+}) {
   const slug = params.project;
-  const project = projects.find((i) => i.slug === slug);
+  //const project = projects.find((i) => i.slug === slug);
+  const [project, setProject] = useState(null);
+  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(
+    null
+  );
+
+  useEffect(() => {
+    getBlogPost(slug).then((res) => setProject(res));
+  }, []);
+
+  useEffect(() => {
+    if (project) {
+      console.log(project);
+      getMarkdown(project.markdownUrl).then((res) => setMdxSource(res));
+    }
+  }, [project]);
+
+  if (!project || !mdxSource) {
+    return null;
+  }
 
   return (
     <motion.div
@@ -21,24 +52,8 @@ export default function Page({ params }: { params: { project: string } }) {
     >
       <h1 className="text-3xl font-bold">{project?.title}</h1>
       <p className="max-w-lg text-muted-foreground">{project?.description}</p>
-      <div className="mb-4 flex gap-2 ">
-        {project?.links?.map((link) => {
-          return (
-            <a
-              href={link.url}
-              key={link.url}
-              target="_blank"
-              className="text-foreground dark:text-foreground"
-            >
-              <Button variant="outline" className="text-md gap-2">
-                {link.icon} {link.title}
-              </Button>
-            </a>
-          );
-        })}
-      </div>
 
-      {project?.bodyMarkdown}
+      {mdxSource && <MDXRemote {...mdxSource} />}
     </motion.div>
   );
 }

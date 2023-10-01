@@ -6,13 +6,13 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "featured_projects",
+      name: "featuredProjects",
       title: "Featured Projects",
       type: "array",
       of: [{ type: "reference", to: { type: "project" } }],
     }),
     defineField({
-      name: "featured_posts",
+      name: "featuredPosts",
       title: "Featured Posts",
       type: "array",
       of: [{ type: "reference", to: { type: "post" } }],

@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./mdx-components.tsx",
   ],
   theme: {
+    hljs: { theme: "base16/ros-pine" },
     container: {
       center: true,
       padding: "2rem",
@@ -77,5 +78,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate", "@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("tailwind-highlightjs"),
+  ],
+  safelist: [{ pattern: /hljs+/ }],
 };

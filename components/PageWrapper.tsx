@@ -19,7 +19,7 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TopLoader />
-      <main className="container relative h-screen max-w-5xl justify-between sm:pl-4 sm:pr-2  md:pt-2 lg:pt-6 ">
+      <main className="container relative h-screen max-w-4xl justify-between sm:pl-4 sm:pr-2  md:pt-2 lg:pt-6 ">
         <div ref={contentRef}>
           <Header />
           {children}

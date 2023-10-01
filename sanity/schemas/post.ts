@@ -11,6 +11,14 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",
@@ -21,8 +29,14 @@ export default defineType({
       type: "array",
       of: [{ type: "reference", to: { type: "tag" } }],
     }),
+
     defineField({
-      name: "devto_url",
+      name: "bodyMarkdown",
+      title: "Body Markdown",
+      type: "file",
+    }),
+    defineField({
+      name: "devtoUrl",
       title: "dev.to URL",
       type: "url",
     }),
