@@ -23,12 +23,10 @@ export function useLastVisited(pathname: string) {
         setAnimReady(true);
       }
 
-      console.log(lastVisitedTimeString);
-
       if (
         lastVisitedTimeString &&
         calculateDiffInMinutes(new Date(), new Date(lastVisitedTimeString)) >=
-        animRefreshMins
+          animRefreshMins
       ) {
         setAnimReady(true);
         localStorage.setItem(`lastVisited_${pathname}`, new Date().toString());

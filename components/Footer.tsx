@@ -20,7 +20,6 @@ export default function Footer({
       const contentHeight = contentRef.current.offsetHeight;
       const footerHeight = footerRef.current.offsetHeight;
       const windowHeight = window.innerHeight;
-      console.log({ contentHeight, footerHeight, windowHeight });
       setIsAbsolute(contentHeight + footerHeight <= windowHeight);
     }
   }

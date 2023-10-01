@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${roboto_mono.variable} ${lexend.variable} container max-w-5xl `}
+        className={`${inter.className} ${roboto_mono.variable} ${lexend.variable}`}
       >
         <PageWrapper>{children}</PageWrapper>
         <Analytics />

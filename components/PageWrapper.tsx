@@ -4,14 +4,22 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ThemeProvider } from "./ThemeProvider";
 import TopLoader from "./TopLoader";
+import { usePathname } from "next/navigation";
+
+const stylingIngoredPaths = ["/studio"];
 
 export default function PageWrapper({ children }: { children: ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  if (stylingIngoredPaths.includes(pathname)) {
+    return children;
+  }
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TopLoader />
-      <main className="relative h-screen justify-between sm:pl-4 sm:pr-2 md:pt-2 lg:pt-6">
+      <main className="container relative h-screen max-w-5xl justify-between sm:pl-4 sm:pr-2  md:pt-2 lg:pt-6 ">
         <div ref={contentRef}>
           <Header />
           {children}
