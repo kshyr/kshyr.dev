@@ -9,7 +9,10 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    remotePatterns: [{ hostname: "upload.wikimedia.org" }],
+    remotePatterns: [
+      { hostname: "upload.wikimedia.org" },
+      { hostname: "cdn.sanity.io" },
+    ],
   },
   async rewrites() {
     return [{ source: "/skills", destination: "/" }];

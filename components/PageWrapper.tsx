@@ -6,7 +6,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import TopLoader from "./TopLoader";
 import { usePathname } from "next/navigation";
 
-const stylingIngoredPaths = ["/studio"];
+const stylingIngoredPaths = ["/studio", "/desk"];
 
 export default function PageWrapper({ children }: { children: ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null);

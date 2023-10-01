@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "post",
-  title: "Blog Post",
+  name: "project",
+  title: "Project",
   type: "document",
   fields: [
     defineField({
@@ -22,8 +22,13 @@ export default defineType({
       of: [{ type: "reference", to: { type: "tag" } }],
     }),
     defineField({
-      name: "devto_url",
-      title: "dev.to URL",
+      name: "github_url",
+      title: "Github URL",
+      type: "url",
+    }),
+    defineField({
+      name: "live_url",
+      title: "Live URL",
       type: "url",
     }),
   ],

@@ -101,6 +101,7 @@ export default function Home() {
       </strong>
     );
   }
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -179,12 +180,12 @@ export default function Home() {
         className="mt-16 flex flex-col items-center gap-4 lg:mt-0 lg:items-start"
       >
         {projects
-          .filter((p) => featuredHandles.includes(p.handle))
+          .filter((p) => featuredHandles.includes(p.slug))
           .map((project, i) => {
             return (
               <ProjectCard
                 key={project.title}
-                handle={project.handle}
+                slug={project.slug}
                 type={project.type}
                 title={project.title}
                 description={project.description}

@@ -20,7 +20,7 @@ interface MotionProps {
 type ProjectCardProps = Partial<Project> & MotionProps;
 
 export default function ProjectCard({
-  handle,
+  slug,
   type,
   title,
   description,
@@ -75,7 +75,7 @@ export default function ProjectCard({
 
   return (
     <Link
-      href={animationDone ? `/${handle}` : ""}
+      href={animationDone ? `/${slug}` : ""}
       className={cx("no-underline", animationDone || "cursor-default")}
       draggable={false}
     >

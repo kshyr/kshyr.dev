@@ -34,11 +34,11 @@ export default function Page() {
           {projects.map((project) => {
             return (
               <TableRow
-                key={project.handle}
+                key={project.slug}
                 className="cursor-pointer text-[16px]"
                 onClick={() => {
                   NProgress.start();
-                  router.push(`/${project.handle}`);
+                  router.push(`/${project.slug}`);
                 }}
               >
                 <TableCell className="py-5 font-semibold sm:pl-5">

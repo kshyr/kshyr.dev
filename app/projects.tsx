@@ -50,7 +50,7 @@ function liveLink(url: string): Link {
 
 export const projects: Project[] = [
   {
-    handle: "ui-crates",
+    slug: "ui-crates",
     type: "project",
     subtype: "web",
     title: "UI Crates",
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     bodyMarkdown: <UICrates />,
   },
   {
-    handle: "digital-garden",
+    slug: "digital-garden",
     type: "project",
     subtype: "web",
     title: "Digital Garden",
@@ -93,7 +93,7 @@ export const projects: Project[] = [
   //   bodyMarkdown: <Spreadsheet />,
   // },
   {
-    handle: "linkstash",
+    slug: "linkstash",
     type: "project",
     title: "LinkStash",
     description: "Minimalistic bookmark manager written in Rust.",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     bodyMarkdown: <LinkStash />,
   },
   {
-    handle: "vec",
+    slug: "vec",
     type: "blog",
     title: "Implementing Vec in Rust",
     description:
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     bodyMarkdown: <Vec />,
   },
   {
-    handle: "next-13-sanity",
+    slug: "next-13-sanity",
     type: "project",
     subtype: "web",
     title: "Next.js 13 + Sanity.io",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
   //   bodyMarkdown: <Spotlight />,
   // },
   {
-    handle: "gitlobby",
+    slug: "gitlobby",
     type: "project",
     subtype: "web",
     title: "GitLobby",
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     bodyMarkdown: <GitLobby />,
   },
   {
-    handle: "any-store",
+    slug: "any-store",
     type: "project",
     subtype: "web",
     title: "Any Store",
@@ -192,7 +192,7 @@ export const projects: Project[] = [
   // },
 ];
 
-export async function getREADME(handle: Project["handle"]) {
+export async function getREADME(handle: Project["slug"]) {
   const res = await fetch(
     `https://api.github.com/repos/kshyr/${handle}/readme`
   );

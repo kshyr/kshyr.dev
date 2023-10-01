@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 export default function Page({ params }: { params: { project: string } }) {
   const pathname = usePathname();
   const { isEvaluated, animReady } = useLastVisited(pathname);
-  const project = projects.find((i) => i.handle === params.project);
 
   if (!isEvaluated) return null;
+  const slug = params.project;
+  const project = projects.find((i) => i.slug === slug);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
