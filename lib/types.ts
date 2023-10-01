@@ -6,12 +6,6 @@ export type Link = {
   icon?: string | ReactNode;
 };
 
-type Image = {
-  url: string;
-  alt: string;
-  twClasses?: string;
-};
-
 export type Project = {
   slug: string;
   type: "project" | "blog";

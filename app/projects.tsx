@@ -1,22 +1,15 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Link, Project } from "@/lib/types";
 import {
-  Vec,
-  LinkStash,
-  Terrarium,
-  DigitalGarden,
-  Spotlight,
-  GitLobby,
   AnyStore,
-  Chip8,
-  TileBook,
-  RayTracer,
-  Spreadsheet,
-  UICrates,
-  GoSvelte,
+  DigitalGarden,
+  GitLobby,
+  LinkStash,
   Next13Sanity,
+  UICrates,
+  Vec,
 } from "./markdowns";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { ReactNode } from "react";
 import Image from "next/image";
 

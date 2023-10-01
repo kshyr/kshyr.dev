@@ -1,14 +1,12 @@
 "use client";
-import { Card, CardDescription, CardTitle, CardHeader } from "./ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Github, ScrollText } from "lucide-react";
 import { Badge } from "./ui/badge";
 import type { Project } from "@/lib/types";
 import Link from "next/link";
 import { cx } from "class-variance-authority";
-import { Variants, motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import { useLastVisited } from "@/lib/hooks/useLastVisited";
-import { usePathname } from "next/navigation";
 
 interface MotionProps {
   variants: Variants;
@@ -31,7 +29,6 @@ export default function ProjectCard({
   animReady,
 }: ProjectCardProps) {
   const [animationDone, setAnimationDone] = useState(false);
-  const pathname = usePathname();
 
   const fullAnimationTime = 0.55;
   const fullAnimationDelay = delay + fullAnimationTime * index;
@@ -84,7 +81,7 @@ export default function ProjectCard({
         className={cx(
           "group flex w-96 select-none border-transparent transition-colors",
           animationDone &&
-          "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10 active:dark:bg-secondary/70",
+            "shadow hover:border-b-primary/10 hover:bg-secondary hover:dark:border-b-border hover:dark:border-t-primary/10 active:dark:bg-secondary/70",
           animationDone ? "shadow" : "shadow-none"
         )}
       >

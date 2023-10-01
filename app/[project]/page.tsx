@@ -8,13 +8,12 @@ import rehypeHighlight from "rehype-highlight";
 
 async function getMarkdown(url: string) {
   const data = await fetch(url).then((res) => res.text());
-  const mdxSource = await serialize(data, {
+  return await serialize(data, {
     mdxOptions: {
       development: process.env.NODE_ENV === "development",
       rehypePlugins: [rehypeHighlight as any],
     },
   });
-  return mdxSource;
 }
 
 export default function ProjectPage({
@@ -31,7 +30,7 @@ export default function ProjectPage({
 
   useEffect(() => {
     getBlogPost(slug).then((res) => setProject(res));
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     if (project) {
