@@ -1,7 +1,6 @@
 import "./globals.css";
-import "@code-hike/mdx/dist/index.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter, Roboto_Mono, Lexend_Deca } from "next/font/google";
+import { Inter, Lexend_Deca, Roboto_Mono } from "next/font/google";
 import PageWrapper from "@/components/PageWrapper";
 
 const lexend = Lexend_Deca({

@@ -1,6 +1,5 @@
 import nextMDX from "@next/mdx";
-import {remarkCodeHike} from "@code-hike/mdx";
-import theme from "shiki/themes/rose-pine.json" assert {type: "json"};
+import rehypeHighlight from "rehype-highlight";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,7 +20,6 @@ const nextConfig = {
 
 export default nextMDX({
     options: {
-        remarkPlugins: [[remarkCodeHike, {theme}]],
-        rehypePlugins: [],
+        rehypePlugins: [rehypeHighlight],
     },
 })(nextConfig);
