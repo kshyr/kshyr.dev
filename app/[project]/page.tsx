@@ -1,4 +1,4 @@
-import { getBlogPost } from "@/sanity/lib/queries";
+import { getBlogPost, getProject } from "@/sanity/lib/queries";
 import ClientSideProjectPage from "@/components/csr-pages/ProjectPage";
 import { Metadata } from "next";
 
@@ -8,7 +8,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.project;
-  const project = await getBlogPost(slug);
+  const blog = await getBlogPost(slug);
+  const project = blog ?? (await getProject(slug));
   return {
     title: project.title,
     description: project.description,

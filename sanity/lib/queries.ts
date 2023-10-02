@@ -51,3 +51,18 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     { slug }
   );
 }
+
+export async function getProject(slug: string): Promise<Project> {
+  return client.fetch(
+    groq`*[_type == "project" && slug.current == $slug][0] {
+      title,
+      description,
+      slug,
+      "tags": tags[]->name,
+      "markdownUrl": bodyMarkdown.asset->url,
+      githubUrl,
+      liveUrl,
+    }`,
+    { slug }
+  );
+}
