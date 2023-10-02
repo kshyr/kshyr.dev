@@ -1,7 +1,6 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
-import { motion, Variants } from "framer-motion";
-import { useLastVisited } from "@/lib/hooks/useLastVisited";
+import { motion } from "framer-motion";
 //@ts-ignore
 import { usePathname } from "next/navigation";
 import Name from "@/components/interactive-words/Name";
@@ -13,78 +12,18 @@ import { cn } from "@/lib/utils";
 import SkillTag from "@/components/Skills";
 import Link from "next/link";
 import { BlogPost, Project } from "@/lib/types";
-
-const nameVariants: Variants = {
-  initial: {
-    opacity: 0,
-    x: -60,
-  },
-  animate: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 0,
-    },
-  },
-};
-
-const titleVariants: Variants = {
-  initial: {
-    opacity: 0,
-    y: -40,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      delay: 0.3,
-    },
-  },
-};
-
-const introVariants: Variants = {
-  initial: {
-    opacity: 0,
-    y: 40,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: 0.8,
-    },
-  },
-};
-
-const projectsSectionDelay = 1.2;
-
-const projectsVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      delay: projectsSectionDelay,
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const skillVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      delayChildren: projectsSectionDelay,
-      staggerChildren: 0.15,
-    },
-  },
-};
+import {
+  dividerVariants,
+  introVariants,
+  nameVariants,
+  postsMoreVariants,
+  projectsMoreVariants,
+  projectsSectionDelay,
+  projectsVariants,
+  skillVariants,
+  titleVariants,
+} from "@/lib/data/motion-variants/HomeVariants";
+import { useLastVisited } from "@/lib/hooks/useLastVisited";
 
 export default function Home({
   featured,
@@ -200,16 +139,28 @@ export default function Home({
             />
           );
         })}
-        <Link
-          href="/projects"
-          className={cn(
-            "flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors  lg:self-end",
-            "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
-          )}
+        <motion.div
+          variants={animReady ? projectsMoreVariants : undefined}
+          initial="initial"
+          animate="animate"
+          className="self-center lg:self-end"
         >
-          See more projects <ArrowRight size={18} />
-        </Link>
-        <div className="h-[1px] w-full bg-muted-foreground" />
+          <Link
+            href="/projects"
+            className={cn(
+              "flex select-none items-center gap-2 rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors",
+              "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
+            )}
+          >
+            See more projects <ArrowRight size={18} />
+          </Link>
+        </motion.div>
+        <motion.div
+          variants={animReady ? dividerVariants : undefined}
+          initial="initial"
+          animate="animate"
+          className="h-[1px] w-full self-end bg-muted-foreground"
+        />
         {featured.posts.map((project, i) => {
           return (
             <ProjectCard
@@ -220,21 +171,28 @@ export default function Home({
               description={project.description}
               tags={project.tags}
               variants={projectsVariants}
-              index={i}
+              index={i + 3}
               delay={projectsSectionDelay}
               animReady={animReady}
             />
           );
         })}
-        <Link
-          href="/blog"
-          className={cn(
-            "flex select-none items-center gap-2 self-center rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors  lg:self-end",
-            "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
-          )}
+        <motion.div
+          variants={animReady ? postsMoreVariants : undefined}
+          initial="initial"
+          animate="animate"
+          className="self-center lg:self-end"
         >
-          See more posts <ArrowRight size={18} />
-        </Link>
+          <Link
+            href="/blog"
+            className={cn(
+              "flex select-none items-center gap-2  rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors",
+              "hover:border-b-primary/10 hover:bg-secondary hover:text-foreground/80 dark:text-foreground hover:dark:border-b-border hover:dark:border-t-primary/10 hover:dark:text-foreground/80 active:dark:bg-secondary/70"
+            )}
+          >
+            See more posts <ArrowRight size={18} />
+          </Link>
+        </motion.div>
       </motion.section>
     </motion.main>
   );
