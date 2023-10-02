@@ -1,10 +1,10 @@
 export default function GitHubLink() {
   return (
-    <div className="scale-[0.25] transition-transform duration-200 ease-in-out hover:scale-[0.28]">
+    <div className="scale-[0.25] pb-6 transition-transform duration-200 ease-in-out hover:scale-[0.28]">
       <a
         href="https://github.com/kshyr/"
         target="_blank"
-        className="-mr-9 scale-[0.25]"
+        className="scale-[0.25]"
       >
         <svg
           className="cursor-pointer fill-primary"

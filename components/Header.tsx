@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import ThemeSwitch from "./ThemeSwitch";
 import Link from "next/link";
 import Logo from "./Logo";
 
@@ -58,8 +57,6 @@ export default function Header() {
             </Link>
           );
         })}
-
-        <ThemeSwitch />
       </div>
     </header>
   );
