@@ -44,7 +44,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
       title,
       slug,
       description,
-      tags,
+      "tags": tags[]->name,
       "markdownUrl": bodyMarkdown.asset->url,
       devtoUrl,
     }`,

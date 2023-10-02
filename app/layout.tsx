@@ -22,9 +22,14 @@ const roboto_mono = Roboto_Mono({
 });
 
 export const metadata = {
-  title: "kshyr | Kostiantyn Shyrolapov | Frontend Engineer",
+  title: {
+    template: "%s | kshyr.dev",
+    default: "kshyr.dev | Kostiantyn Shyrolapov | Frontend Engineer",
+  },
   description:
-    "I specialize in web development - bringing designs and ideas to life, and always doing my best to make experience both accessible and memorable to the end user.",
+    "I specialize in web development - bringing designs and ideas to life, making experience both accessible and memorable to the end user.",
+  creator: "Kostiantyn Shyrolapov",
+  publisher: "Kostiantyn Shyrolapov",
 };
 
 export default function RootLayout({
