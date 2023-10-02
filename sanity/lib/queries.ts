@@ -1,39 +1,44 @@
 import { groq } from "next-sanity";
 import { client } from "./client";
-import { Project } from "@/lib/types";
+import type { BlogPost, Project } from "@/lib/types";
 
-export async function getProjects(): Promise<Project> {
+export async function getFeatured() {
   return client.fetch(
-    groq`*[_type == "project"] {
-      title,
-      description,
-      slug,
-      tags,
-      bodyMarkdown,
-      githubUrl,
-      liveUrl,
+    groq`*[_type == "featured"][0] {
+      "projects": featuredProjects[0..3]->{
+        title,
+        description,
+        "slug": slug.current,
+        "tags": tags[]->name
+      },
+      "posts": featuredPosts[0...1]->{
+        title,
+        description,
+        "slug": slug.current,
+        "tags": tags[]->name
+      }
     }`
   );
 }
 
-type BlogPost = {
-  title: string;
-  slug: string;
-  description: string;
-  tags: string[];
-  markdownUrl: string;
-  devtoUrl: string;
-};
-
 export async function getBlogPosts(): Promise<BlogPost[]> {
   return client.fetch(
-    groq`*[_type == "post"] {
+    groq`*[_type == "post"][] {
       title,
-      slug,
       description,
-      tags,
-      "markdownUrl": bodyMarkdown.asset->url,
-      devtoUrl,
+      "slug": slug.current,
+      "tags": tags[]->name
+    }`
+  );
+}
+
+export async function getProjects(): Promise<Project[]> {
+  return client.fetch(
+    groq`*[_type == "project"][] {
+      title,
+      description,
+      "slug": slug.current,
+      "tags": tags[]->name
     }`
   );
 }

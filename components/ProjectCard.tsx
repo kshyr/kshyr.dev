@@ -72,7 +72,9 @@ export default function ProjectCard({
 
   return (
     <Link
-      href={animationDone ? `/${slug}` : ""}
+      href={
+        animationDone ? `${type === "blog" ? "blog" : "projects"}/${slug}` : ""
+      }
       className={cx("no-underline", animationDone || "cursor-default")}
       draggable={false}
     >

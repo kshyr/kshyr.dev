@@ -9,11 +9,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { motion } from "framer-motion";
-import { projects } from "../projects";
 import NProgress from "nprogress";
 import { useRouter } from "next/navigation";
-export default function Page() {
+import { Project } from "@/lib/types";
+
+export default function ProjectsPage({ projects }: { projects: Project[] }) {
   const router = useRouter();
+
+  if (!projects) {
+    return null;
+  } else {
+    NProgress.done();
+  }
 
   return (
     <motion.div
@@ -26,8 +33,7 @@ export default function Page() {
         <TableHeader>
           <TableRow>
             <TableHead className="sm:pl-5">Title</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead className="text-right md:text-left">Tags</TableHead>
+            <TableHead className="text-right">Tags</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -38,21 +44,15 @@ export default function Page() {
                 className="cursor-pointer text-[16px]"
                 onClick={() => {
                   NProgress.start();
-                  router.push(`/${project.slug}`);
+                  NProgress.remove();
+                  router.push(`projects/${project.slug}`);
                 }}
               >
                 <TableCell className="py-5 font-semibold sm:pl-5">
                   {project.title}
                 </TableCell>
-                <TableCell className="text-[14px]">
-                  {project.type.charAt(0).toUpperCase() +
-                    project.type.substring(1)}
-                  {project.subtype &&
-                    ", " +
-                    project.subtype.charAt(0).toUpperCase() +
-                    project.subtype.substring(1)}
-                </TableCell>
-                <TableCell className="text-right text-[14px]  md:text-left">
+
+                <TableCell className="text-right text-[14px]">
                   {project.tags?.join(", ")}
                 </TableCell>
               </TableRow>

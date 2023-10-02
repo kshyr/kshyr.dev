@@ -1,18 +1,18 @@
-import type { ReactNode } from "react";
-
-export type Link = {
+export type BlogPost = {
   title: string;
-  url: string;
-  icon?: string | ReactNode;
+  slug: string;
+  description: string;
+  tags: string[];
+  markdownUrl: string;
+  devtoUrl: string;
 };
 
 export type Project = {
-  slug: string;
-  type: "project" | "blog";
-  subtype?: "web";
   title: string;
+  slug: string;
   description: string;
-  tags?: string[];
-  links?: Link[];
-  bodyMarkdown?: ReactNode;
+  tags: string[];
+  markdownUrl: string;
+  githubUrl: string;
+  liveUrl: string;
 };

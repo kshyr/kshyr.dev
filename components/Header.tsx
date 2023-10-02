@@ -18,8 +18,12 @@ const navItems: NavItem[] = [
   // //   href: "/about",
   // // },
   {
-    name: "Library",
-    href: "/library",
+    name: "Blog",
+    href: "/blog",
+  },
+  {
+    name: "Projects",
+    href: "/projects",
   },
 ];
 
