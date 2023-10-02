@@ -23,7 +23,7 @@ export async function getFeatured() {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   return client.fetch(
-    groq`*[_type == "post"][] {
+    groq`*[_type == "post"] {
       title,
       description,
       "slug": slug.current,
@@ -34,7 +34,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
 export async function getProjects(): Promise<Project[]> {
   return client.fetch(
-    groq`*[_type == "project"][] {
+    groq`*[_type == "project"] {
       title,
       description,
       "slug": slug.current,
