@@ -1,12 +1,12 @@
 "use client";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { getProject } from "@/sanity/lib/queries";
+import { getBlogPost } from "@/sanity/lib/queries";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import rehypeHighlight from "rehype-highlight";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
 
 async function getMarkdown(url: string) {
   const data = await fetch(url).then((res) => res.text());
@@ -18,24 +18,24 @@ async function getMarkdown(url: string) {
   });
 }
 
-export default function ProjectPage({ slug }: { slug: string }) {
+export default function BlogPostPage({ slug }: { slug: string }) {
   //const project = projects.find((i) => i.slug === slug);
-  const [project, setProject] = useState(null);
+  const [post, setPost] = useState(null);
   const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(
     null
   );
 
   useEffect(() => {
-    getProject(slug).then((res) => setProject(res));
+    getBlogPost(slug).then((res) => setPost(res));
   }, [slug]);
 
   useEffect(() => {
-    if (project) {
-      getMarkdown(project.markdownUrl).then((res) => setMdxSource(res));
+    if (post) {
+      getMarkdown(post.markdownUrl).then((res) => setMdxSource(res));
     }
-  }, [project]);
+  }, [post]);
 
-  if (!project || !mdxSource) {
+  if (!post || !mdxSource) {
     return null;
   }
 
@@ -45,27 +45,24 @@ export default function ProjectPage({ slug }: { slug: string }) {
       animate={{ opacity: 1 }}
       className="flex flex-col justify-between gap-4 py-4"
     >
-      <h1 className="text-3xl font-bold">{project.title}</h1>
-      <p className="max-w-lg text-muted-foreground">{project.description}</p>
+      <h1 className="text-3xl font-bold">{post.title}</h1>
+      <p className="max-w-lg text-muted-foreground">{post.description}</p>
       <div className="mb-4 flex gap-2 ">
         <a
-          href={project.githubUrl}
+          href={post.devtoUrl}
+          key={post.devtoUrl}
           target="_blank"
           className="text-foreground dark:text-foreground"
         >
           <Button variant="outline" className="text-md gap-2">
-            <Github size={20} />
-            Github
-          </Button>
-        </a>
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          className="text-foreground dark:text-foreground"
-        >
-          <Button variant="outline" className="text-md gap-2">
-            <ExternalLink size={20} />
-            Live
+            <Image
+              src="/dev-to.svg"
+              width={22}
+              height={22}
+              className="m-0 border-none invert-0 dark:invert"
+              alt="dev.to logo"
+            />
+            dev.to
           </Button>
         </a>
       </div>
