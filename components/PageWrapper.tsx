@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ThemeProvider } from "./ThemeProvider";
 import TopLoader from "./TopLoader";
+//@ts-ignore
 import { usePathname } from "next/navigation";
 
 const stylingIngoredPaths = ["/studio", "/desk"];

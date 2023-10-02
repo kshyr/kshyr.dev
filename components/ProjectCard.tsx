@@ -27,7 +27,9 @@ export default function ProjectCard({
   index,
   delay,
   animReady,
-}: ProjectCardProps) {
+}: ProjectCardProps & {
+  type: "blog" | "project";
+}) {
   const [animationDone, setAnimationDone] = useState(false);
 
   const fullAnimationTime = 0.55;

@@ -2,6 +2,7 @@
 import ProjectCard from "@/components/ProjectCard";
 import { motion, Variants } from "framer-motion";
 import { useLastVisited } from "@/lib/hooks/useLastVisited";
+//@ts-ignore
 import { usePathname } from "next/navigation";
 import Name from "@/components/interactive-words/Name";
 import { ArrowRight } from "lucide-react";

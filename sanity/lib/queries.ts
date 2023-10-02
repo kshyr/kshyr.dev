@@ -5,7 +5,7 @@ import type { BlogPost, Project } from "@/lib/types";
 export async function getFeatured() {
   return client.fetch(
     groq`*[_type == "featured"][0] {
-      "projects": featuredProjects[0..3]->{
+      "projects": featuredProjects[0...3]->{
         title,
         description,
         "slug": slug.current,

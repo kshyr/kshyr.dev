@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { getProjects } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Projects",
   description: "A list of my projects.",
 };
 

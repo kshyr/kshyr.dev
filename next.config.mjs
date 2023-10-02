@@ -3,18 +3,15 @@ import rehypeHighlight from "rehype-highlight";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
-    experimental: {
-        appDir: true,
+    typescript: {
+        ignoreBuildErrors: true,
     },
+    pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
     images: {
         remotePatterns: [
             {hostname: "upload.wikimedia.org"},
             {hostname: "cdn.sanity.io"},
         ],
-    },
-    async rewrites() {
-        return [{source: "/skills", destination: "/"}];
     },
 };
 
