@@ -78,7 +78,6 @@ export default function ProjectCard({
         animationDone ? `${type === "blog" ? "blog" : "projects"}/${slug}` : ""
       }
       className={cx("no-underline", animationDone || "cursor-default")}
-      draggable={false}
     >
       <Card
         variants={animReady ? (variants as Variants) : undefined}

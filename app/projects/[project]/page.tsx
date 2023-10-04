@@ -1,8 +1,7 @@
 import { getProject } from "@/sanity/lib/queries";
 import ClientSideProjectPage from "@/components/csr-pages/ProjectPage";
 import { Metadata } from "next";
-import { serialize } from "next-mdx-remote/serialize";
-import rehypeHighlight from "rehype-highlight";
+import { getMarkdown } from "@/lib/utils";
 
 export const revalidate = 60;
 
@@ -18,16 +17,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: project.description,
     keywords: project.tags,
   };
-}
-
-async function getMarkdown(url: string) {
-  const data = await fetch(url).then((res) => res.text());
-  return await serialize(data, {
-    mdxOptions: {
-      development: process.env.NODE_ENV === "development",
-      rehypePlugins: [rehypeHighlight as any],
-    },
-  });
 }
 
 export default async function ProjectPage({ params }: Props) {

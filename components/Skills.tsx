@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
-  Variants,
   motion,
   useMotionTemplate,
   useSpring,
   useTransform,
+  Variants,
 } from "framer-motion";
 import { Skill } from "@/app/skills";
 
@@ -101,7 +101,6 @@ export default function SkillTag({
         }}
       >
         <Image
-          draggable={false}
           src={skill.logoSrc}
           alt={skill.name + " logo"}
           width={skill.customWidth ?? 24}

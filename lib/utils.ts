@@ -1,8 +1,20 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { serialize } from "next-mdx-remote/serialize";
+import rehypeHighlight from "rehype-highlight";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export async function getMarkdown(url: string) {
+  const data = await fetch(url).then((res) => res.text());
+  return await serialize(data, {
+    mdxOptions: {
+      development: process.env.NODE_ENV === "development",
+      rehypePlugins: [rehypeHighlight as any],
+    },
+  });
 }
 
 export function hslToRgb(hsl: string): string {

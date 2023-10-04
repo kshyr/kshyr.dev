@@ -1,8 +1,7 @@
 import { getBlogPost } from "@/sanity/lib/queries";
 import ClientSideBlogPostPage from "@/components/csr-pages/BlogPostPage";
 import { Metadata } from "next";
-import { serialize } from "next-mdx-remote/serialize";
-import rehypeHighlight from "rehype-highlight";
+import { getMarkdown } from "@/lib/utils";
 
 export const revalidate = 60;
 
@@ -19,16 +18,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: blog.description,
     keywords: blog.tags,
   };
-}
-
-async function getMarkdown(url: string) {
-  const data = await fetch(url).then((res) => res.text());
-  return await serialize(data, {
-    mdxOptions: {
-      development: process.env.NODE_ENV === "development",
-      rehypePlugins: [rehypeHighlight as any],
-    },
-  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

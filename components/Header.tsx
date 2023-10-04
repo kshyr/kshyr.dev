@@ -28,11 +28,10 @@ const navItems: NavItem[] = [
 
 export default function Header() {
   return (
-    <header className="flex h-24 items-center justify-between">
+    <header className="flex h-24 items-center justify-between pr-4">
       <Link
         href="/"
         className="flex h-8 w-10 items-center justify-center md:w-14 lg:w-auto"
-        draggable={false}
       >
         <Logo />
       </Link>
@@ -40,7 +39,6 @@ export default function Header() {
         {navItems.map((navItem) => {
           return (
             <Link
-              draggable={false}
               key={navItem.name}
               href={navItem.href}
               className="cursor-default select-none no-underline"
