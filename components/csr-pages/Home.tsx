@@ -61,7 +61,7 @@ export default function Home({
             className="text-[15px] font-semibold text-muted-foreground sm:text-xl"
           >
             Frontend Engineer{" "}
-            <em className="text-sm text-muted-foreground/80">@ Stealth</em>
+            <em className="text-sm text-muted-foreground/80">@ FORA</em>
           </motion.h2>
           <motion.h1
             variants={animReady ? nameVariants : undefined}
