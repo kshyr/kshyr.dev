@@ -49,7 +49,7 @@ export default function Footer({
       )}
     >
       <span className="text-xs font-extralight text-muted-foreground md:text-sm">
-        ©2023 Kostiantyn Shyrolapov
+        ©2026 Kostiantyn Shyrolapov
       </span>
       <div className="flex h-full items-center">
         <LinkedInLink />
