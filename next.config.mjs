@@ -3,6 +3,7 @@ import rehypeHighlight from "rehype-highlight";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: "standalone",
     typescript: {
         ignoreBuildErrors: true,
     },
