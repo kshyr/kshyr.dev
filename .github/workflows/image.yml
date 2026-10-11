@@ -2,7 +2,7 @@ name: image
 
 on:
   push:
-    branches: [astro]
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -32,7 +32,7 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=sha,prefix=sha-
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/astro' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
       - id: build
         uses: docker/build-push-action@v7
