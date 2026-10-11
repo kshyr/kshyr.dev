@@ -4,6 +4,10 @@ export function ghostOrigin(): string {
   return GHOST_URL.replace(/\/$/, "");
 }
 
+// A Ghost whose url is https redirects plain-HTTP requests for uploads to
+// https on the same host, which a private http://ghost:2368 can't serve.
+export const FORWARDED_HTTPS = { "X-Forwarded-Proto": "https" };
+
 const TIMEOUT_MS = 3000;
 const MAX_CACHED = 500;
 const lastGood = new Map<string, unknown>();

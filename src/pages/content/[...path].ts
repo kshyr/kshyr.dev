@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { ghostOrigin } from "@/lib/ghost/client";
+import { FORWARDED_HTTPS, ghostOrigin } from "@/lib/ghost/client";
 
 const roots = new Set(["images", "media", "files"]);
 const forwardedHeaders = ["content-type", "content-length", "cache-control", "etag", "last-modified"];
@@ -17,6 +17,7 @@ export const GET: APIRoute = async ({ params, request }) => {
   try {
     upstream = await fetch(`${ghostOrigin()}/content/${parts.map(encodeURIComponent).join("/")}`, {
       headers: {
+        ...FORWARDED_HTTPS,
         "if-none-match": request.headers.get("if-none-match") ?? "",
         "if-modified-since": request.headers.get("if-modified-since") ?? "",
       },

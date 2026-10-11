@@ -1,5 +1,5 @@
 import { imageSize } from "image-size";
-import { ghostOrigin } from "./client";
+import { FORWARDED_HTTPS, ghostOrigin } from "./client";
 
 const HEAD_BYTES = 128 * 1024;
 const TIMEOUT_MS = 2000;
@@ -16,7 +16,7 @@ async function measure(path: string): Promise<Size | null> {
 
   try {
     const res = await fetch(`${ghostOrigin()}${path}`, {
-      headers: { Range: `bytes=0-${HEAD_BYTES - 1}` },
+      headers: { ...FORWARDED_HTTPS, Range: `bytes=0-${HEAD_BYTES - 1}` },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!res.ok) throw new Error(`${res.status}`);
