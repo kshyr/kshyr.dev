@@ -4,8 +4,9 @@ export function ghostOrigin(): string {
   return GHOST_URL.replace(/\/$/, "");
 }
 
-// A Ghost whose url is https redirects plain-HTTP requests for uploads to
-// https on the same host, which a private http://ghost:2368 can't serve.
+// A Ghost whose url is https redirects plain-HTTP requests to https: uploads
+// on the same host, the Content API to its public url. Neither is reachable
+// from a private http://ghost:2368.
 export const FORWARDED_HTTPS = { "X-Forwarded-Proto": "https" };
 
 const TIMEOUT_MS = 3000;
@@ -29,7 +30,7 @@ export async function ghostFetch<T>(
 
   try {
     const res = await fetch(url, {
-      headers: { "Accept-Version": "v6.0" },
+      headers: { ...FORWARDED_HTTPS, "Accept-Version": "v6.0" },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!res.ok) {
