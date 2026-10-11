@@ -10,6 +10,12 @@ import lexendDeca from "@fontsource-variable/lexend-deca/files/lexend-deca-latin
 import robotoMono from "@fontsource-variable/roboto-mono/files/roboto-mono-latin-wght-normal.woff2?url";
 
 type Props = Parameters<typeof Head>[0];
+
+// Umami pageview counts (homelab-stacks: stack "umami" on oracle). public-proxy
+// routes /x/script.js and /x/api/send, and nothing else, to it. The script
+// counts only on kshyr.dev (so local runs don't), drops query strings (no
+// UTM or click IDs), and honours Do Not Track.
+const umamiWebsiteId = "b0604845-fd33-45bf-ac0c-a7fb73342b5e";
 ---
 
 <html lang="en" class="dark">
@@ -18,6 +24,14 @@ type Props = Parameters<typeof Head>[0];
     {[inter, lexendDeca, robotoMono].map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     <meta name="theme-color" content="#020817" />
     <IntroGate />
+    <script
+      is:inline
+      defer
+      src="/x/script.js"
+      data-website-id={umamiWebsiteId}
+      data-domains="kshyr.dev"
+      data-exclude-search="true"
+      data-do-not-track="true"></script>
   </head>
   <body>
     <a
