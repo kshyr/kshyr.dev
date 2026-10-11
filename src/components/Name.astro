@@ -1,0 +1,37 @@
+---
+import { COLORS } from "@/lib/data";
+
+const name = "Kostiantyn Shyrolapov";
+---
+
+<span class="name">
+  {
+    name.split(" ").map((word, w) => (
+      <>
+        {w > 0 && " "}
+        <span class="whitespace-nowrap">
+          {word.split("").map((letter, i) => (
+            <span class="letter" style={`--c:${COLORS[(w * 5 + i * 7 + 3) % COLORS.length]}`}>{letter}</span>
+          ))}
+        </span>
+      </>
+    ))
+  }
+</span>
+
+<style>
+  .letter {
+    display: inline-block;
+    cursor: default;
+    transition:
+      transform 0.2s ease,
+      color 0.15s ease;
+  }
+  .name {
+    word-spacing: 0.08em;
+  }
+  .letter:hover {
+    transform: translateY(-10px);
+    color: var(--c);
+  }
+</style>

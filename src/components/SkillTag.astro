@@ -1,0 +1,51 @@
+---
+import type { Skill } from "@/lib/data";
+
+interface Props {
+  skill: Skill;
+}
+const { skill } = Astro.props;
+---
+
+<li class="skill flex items-center gap-2 rounded-md border border-border bg-primary/5 px-2 py-1 transition-colors select-none hover:bg-primary/10" data-intro-item="skill">
+  <img
+    src={skill.logo}
+    alt=""
+    width={skill.width ?? 24}
+    height={skill.height ?? 24}
+    loading="lazy"
+    decoding="async"
+    class:list={["skill-logo", skill.invert && "invert", skill.rounded && "rounded-[3px]"]}
+  />
+  <span class="skill-label font-display text-[15px] font-normal">{skill.name}</span>
+</li>
+
+<style>
+  .skill {
+    --px: 0.5;
+    --py: 0.5;
+    transform: perspective(400px) rotateX(calc((var(--py) - 0.5) * -30deg)) rotateY(calc((var(--px) - 0.5) * 30deg));
+    background-image:
+      linear-gradient(55deg, transparent, rgb(255 255 255 / var(--sheen, 0)) calc(var(--px) * 100%), transparent),
+      linear-gradient(-35deg, transparent, rgb(255 255 255 / calc(var(--sheen, 0) * 0.6)) calc(var(--py) * 100%), transparent);
+    transition:
+      transform 0.15s ease-out,
+      background-color 0.15s;
+  }
+  .skill-logo,
+  .skill-label {
+    transform: translate(calc((var(--px) - 0.5) * 6px), calc((var(--py) - 0.5) * 6px));
+    transition: transform 0.15s ease-out;
+  }
+  .skill-logo {
+    /* Keeps Tailwind's `invert`, which only sets --tw-invert. */
+    filter: var(--tw-invert,) drop-shadow(calc((var(--px) - 0.5) * -0.6px) calc((var(--py) - 0.5) * -0.6px) 2px rgb(0 0 0 / 0.4));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skill,
+    .skill-logo,
+    .skill-label {
+      transform: none;
+    }
+  }
+</style>

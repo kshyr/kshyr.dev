@@ -1,0 +1,30 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ArticleView from "@/components/ArticleView.astro";
+import { getProject } from "@/lib/ghost/queries";
+import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+
+const article = await getProject(Astro.params.slug!);
+if (!article) return Astro.rewrite("/404");
+
+const path = `/projects/${article.slug}`;
+const image = article.seo.image ?? `/og/project/${article.slug}.png`;
+const site = Astro.site!;
+---
+
+<Layout
+  title={article.seo.title}
+  description={article.seo.description}
+  type="article"
+  image={image}
+  publishedTime={article.publishedAt}
+  modifiedTime={article.updatedAt}
+  tags={article.tags}
+  noindex={article.isIdea}
+  jsonLd={[
+    articleJsonLd(article, path, new URL(image, site).toString(), site),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Projects", path: "/projects" }, { name: article.title, path }], site),
+  ]}
+>
+  <ArticleView article={article} />
+</Layout>

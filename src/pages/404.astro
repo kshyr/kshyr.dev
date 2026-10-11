@@ -1,0 +1,14 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+Astro.response.status = 404;
+---
+
+<Layout title="Not found" description="This page doesn't exist." noindex>
+  <div class="flex flex-col items-start gap-4 py-16">
+    <p class="font-mono text-sm text-muted-foreground">404</p>
+    <h1 class="font-display text-3xl font-bold">This page doesn't exist</h1>
+    <p class="text-muted-foreground">It may have moved, or the link may be wrong.</p>
+    <p><a href="/">Back to the home page</a> · <a href="/projects">Projects</a> · <a href="/blog">Blog</a></p>
+  </div>
+</Layout>

@@ -1,0 +1,13 @@
+.git
+.github
+.claude
+.astro
+dist
+node_modules
+.env*
+Dockerfile
+.dockerignore
+README.md
+content
+scripts
+compose.yaml

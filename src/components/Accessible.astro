@@ -1,0 +1,23 @@
+<span class="accessible relative inline-block">
+  <strong tabindex="0" aria-describedby="accessible-tip" class="cursor-help transition-colors hover:text-foreground focus-visible:text-foreground"
+    >accessible</strong
+  >
+  <span
+    id="accessible-tip"
+    role="tooltip"
+    class="tip pointer-events-none absolute bottom-full left-0 z-10 mb-2 rounded-md bg-primary px-3 py-1.5 text-sm whitespace-nowrap text-primary-foreground opacity-0 shadow-md transition-opacity"
+  >
+    <span class="font-mono text-green-800">&lt;<b>strong</b>&gt; </span><b class="font-semibold">accessible</b><span
+      class="font-mono text-green-800"
+    >
+      &lt;/<b>strong</b>&gt;</span
+    >
+  </span>
+</span>
+
+<style>
+  .accessible:hover .tip,
+  .accessible:focus-within .tip {
+    opacity: 1;
+  }
+</style>

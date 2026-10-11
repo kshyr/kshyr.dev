@@ -1,0 +1,146 @@
+---
+import ArrowRight from "@lucide/astro/icons/arrow-right";
+import { SITE } from "@/lib/site";
+import type { Entry } from "@/lib/types";
+import { SKILLS } from "@/lib/data";
+import Accessible from "./Accessible.astro";
+import EntryCard from "./EntryCard.astro";
+import Memorable from "./Memorable.astro";
+import Name from "./Name.astro";
+import SkillTag from "./SkillTag.astro";
+
+interface Props {
+  projects: Entry[];
+  posts: Entry[];
+}
+const { projects, posts } = Astro.props;
+const moreLink =
+  "flex items-center gap-2 rounded-md border border-transparent px-4 py-2 font-display font-normal text-foreground no-underline shadow transition-colors select-none hover:border-t-primary/10 hover:border-b-border hover:bg-secondary hover:text-foreground/80 active:bg-secondary/70";
+---
+
+<div class="flex flex-col justify-between py-4 lg:flex-row">
+  <div class="flex flex-col gap-8">
+    <section class="flex flex-col items-center gap-1 lg:items-start" aria-labelledby="name">
+      <p class="py-0 text-[15px] font-semibold text-muted-foreground sm:text-xl" data-intro-item="title">
+        {SITE.jobTitle}{" "}
+        <a href={SITE.employer.url} class="text-muted-foreground hover:text-foreground"
+          ><em class="text-sm text-muted-foreground/80">@ {SITE.employer.name}</em></a
+        >
+      </p>
+      <h1
+        id="name"
+        class="font-display text-3xl leading-10 font-bold tracking-tight sm:text-[2.5rem] sm:leading-[2.75rem]"
+        data-intro-item="name"
+      >
+        <Name />
+      </h1>
+      <div class="text-md mt-6 max-w-md cursor-default text-center text-muted-foreground lg:max-w-sm lg:text-left" data-intro-item="intro">
+        <p>
+          I specialize in <strong class="underline decoration-transparent transition-colors hover:text-foreground hover:decoration-primary"
+            >web development</strong
+          > - bringing designs and ideas to life, and always doing my best to make experience both <Accessible /> and <Memorable /> to the end user.
+        </p>
+        <p class="mt-6">
+          I'm also passionate about other areas of software, such as embedded engineering, game development, and I'm
+          actively learning about low-level programming to apply my computer science knowledge where performance is
+          critical.
+        </p>
+      </div>
+    </section>
+    <section class="flex flex-col items-center gap-1 lg:items-start" aria-label="Skills">
+      <ul class="skills flex max-w-sm flex-wrap justify-center gap-1 lg:justify-start">
+        {SKILLS.map((skill) => <SkillTag skill={skill} />)}
+      </ul>
+    </section>
+  </div>
+
+  <section class="mt-16 flex flex-col items-center gap-4 lg:mt-0 lg:items-start" aria-labelledby="featured">
+    <h2 id="featured" class="sr-only">Featured work</h2>
+    {projects.map((project, i) => <EntryCard entry={project} index={i} />)}
+    <a href="/projects" class:list={[moreLink, "self-center lg:self-end"]} data-intro-item="projects-more">
+      See more projects <ArrowRight size={18} aria-hidden="true" />
+    </a>
+    <div class="h-px w-full self-end bg-muted-foreground" data-intro-item="divider" role="presentation"></div>
+    {posts.map((post, i) => <EntryCard entry={post} index={projects.length + i} />)}
+    <a href="/blog" class:list={[moreLink, "self-center lg:self-end"]} data-intro-item="posts-more">
+      See more posts <ArrowRight size={18} aria-hidden="true" />
+    </a>
+  </section>
+</div>
+
+<script>
+  import { stagger } from "framer-motion/dom";
+  import { playIntro, type IntroStep } from "@/lib/intro";
+
+  const SECTION_DELAY = 1.2;
+  const CARD_STEP = 0.55;
+  const fade = { opacity: [0, 1] };
+
+  const cardSteps = Array.from(document.querySelectorAll<HTMLElement>('[data-intro-item="card"]')).flatMap(
+    (card): IntroStep[] => {
+      const delay = SECTION_DELAY + CARD_STEP * Number(card.dataset.index);
+      const part = (name: string) => Array.from(card.querySelectorAll(`[data-intro-part="${name}"]`));
+      return [
+        { target: card, from: { opacity: "0" }, to: fade, options: { delay, duration: 0.3 } },
+        { target: part("title"), from: { opacity: "0" }, to: fade, options: { delay, duration: 0.3 } },
+        { target: part("description"), from: { opacity: "0" }, to: fade, options: { delay: delay + 0.1, duration: 0.3 } },
+        {
+          target: part("badge"),
+          from: { opacity: "0" },
+          to: fade,
+          options: { delay: stagger(0.08, { startDelay: delay + 0.15 }), duration: 0.3 },
+        },
+      ];
+    }
+  );
+
+  playIntro([
+    {
+      target: '[data-intro-item="name"]',
+      from: { opacity: "0", transform: "translateX(-60px)" },
+      to: { opacity: [0, 1], x: [-60, 0] },
+      options: { type: "spring", bounce: 0.25, duration: 0.6 },
+    },
+    {
+      target: '[data-intro-item="title"]',
+      from: { opacity: "0", transform: "translateY(-40px)" },
+      to: { opacity: [0, 1], y: [-40, 0] },
+      options: { duration: 0.3, delay: 0.3 },
+    },
+    {
+      target: '[data-intro-item="intro"]',
+      from: { opacity: "0", transform: "translateY(40px)" },
+      to: { opacity: [0, 1], y: [40, 0] },
+      options: { duration: 0.6, delay: 0.8 },
+    },
+    {
+      target: '[data-intro-item="skill"]',
+      from: { opacity: "0" },
+      to: fade,
+      options: { delay: stagger(0.15, { startDelay: SECTION_DELAY }), duration: 0.3 },
+    },
+    ...cardSteps,
+    { target: '[data-intro-item="projects-more"]', from: { opacity: "0" }, to: fade, options: { delay: 2.5 } },
+    {
+      target: '[data-intro-item="divider"]',
+      from: { transform: "scaleX(0)", transformOrigin: "right" },
+      to: { scaleX: [0, 1] },
+      options: { delay: 2.5, type: "spring", stiffness: 400, damping: 30 },
+    },
+    { target: '[data-intro-item="posts-more"]', from: { opacity: "0" }, to: fade, options: { delay: 3 } },
+  ]);
+
+  for (const tag of document.querySelectorAll<HTMLElement>(".skill")) {
+    tag.addEventListener("pointermove", (event) => {
+      const box = tag.getBoundingClientRect();
+      tag.style.setProperty("--px", String((event.clientX - box.left) / box.width));
+      tag.style.setProperty("--py", String((event.clientY - box.top) / box.height));
+      tag.style.setProperty("--sheen", "0.12");
+    });
+    tag.addEventListener("pointerleave", () => {
+      tag.style.removeProperty("--px");
+      tag.style.removeProperty("--py");
+      tag.style.removeProperty("--sheen");
+    });
+  }
+</script>

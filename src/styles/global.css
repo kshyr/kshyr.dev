@@ -1,0 +1,198 @@
+@import "tailwindcss" source(none);
+@source "../";
+@import "highlight.js/styles/base16/ros-pine.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/lexend-deca";
+@import "@fontsource-variable/roboto-mono";
+@import "./intro.css";
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Roboto Mono Variable", ui-monospace, monospace;
+  --font-display: "Lexend Deca Variable", "Inter Variable", sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  color-scheme: dark;
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --ring: 215 20.2% 65.1%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply h-full;
+    overflow-y: scroll;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-2 outline-ring;
+  }
+
+  h2 {
+    @apply pt-3 text-2xl leading-9 font-bold tracking-normal;
+  }
+
+  h3 {
+    @apply pt-2 text-xl font-bold tracking-normal;
+  }
+
+  h4 {
+    @apply pt-2 text-lg leading-5 font-semibold tracking-tight;
+  }
+
+  a {
+    @apply text-blue-200 underline transition-colors hover:text-indigo-300;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  p {
+    @apply py-1 leading-6;
+  }
+}
+
+@layer components {
+  .ghost-content img {
+    @apply my-6 h-auto max-w-full rounded-md border shadow-md;
+  }
+
+  .ghost-content code {
+    @apply rounded-md border bg-secondary/60 px-1 font-mono text-[0.9em];
+  }
+
+  .ghost-content pre {
+    @apply my-4 overflow-x-auto rounded-md border;
+  }
+
+  .ghost-content pre code {
+    @apply block rounded-none border-0 p-4 text-sm leading-6;
+  }
+
+  .ghost-content blockquote {
+    @apply relative my-4 pl-6 italic before:absolute before:left-0 before:h-full before:w-1 before:bg-secondary before:content-[''];
+  }
+
+  .ghost-content ol {
+    @apply relative list-decimal pt-2 pb-3 pl-8;
+  }
+
+  .ghost-content ul {
+    @apply relative list-disc pt-2 pl-8;
+  }
+
+  .ghost-content li {
+    @apply pb-2 pl-1;
+  }
+
+  .ghost-content hr {
+    @apply my-8;
+  }
+
+  .ghost-content figure {
+    @apply my-6;
+  }
+
+  .ghost-content figure img {
+    @apply my-0;
+  }
+
+  .ghost-content figcaption {
+    @apply mt-2 text-center text-sm text-muted-foreground;
+  }
+
+  .ghost-content .kg-gallery-row {
+    @apply flex gap-2;
+  }
+
+  .ghost-content .kg-btn {
+    @apply inline-flex rounded-md border px-4 py-2 font-medium text-foreground no-underline shadow transition-colors hover:bg-secondary hover:text-foreground;
+  }
+
+  .ghost-content .kg-callout-card {
+    @apply my-6 flex gap-3 rounded-md border bg-secondary/60 px-5 py-4;
+  }
+
+  .ghost-content .kg-bookmark-container {
+    @apply my-6 flex overflow-hidden rounded-md border text-foreground no-underline hover:bg-secondary/60 hover:text-foreground;
+  }
+
+  .ghost-content .kg-bookmark-content {
+    @apply flex flex-1 flex-col gap-1 p-4;
+  }
+
+  .ghost-content .kg-bookmark-title {
+    @apply font-semibold;
+  }
+
+  .ghost-content .kg-bookmark-description {
+    @apply line-clamp-2 text-sm text-muted-foreground;
+  }
+
+  .ghost-content .kg-bookmark-metadata {
+    @apply flex items-center gap-2 text-xs text-muted-foreground;
+  }
+
+  .ghost-content .kg-bookmark-icon {
+    @apply m-0 h-4 w-4 border-none shadow-none;
+  }
+
+  .ghost-content .kg-bookmark-thumbnail {
+    @apply hidden w-1/3 sm:block;
+  }
+
+  .ghost-content .kg-bookmark-thumbnail img {
+    @apply m-0 h-full w-full rounded-none border-none object-cover shadow-none;
+  }
+
+  .ghost-content .kg-embed-card iframe {
+    @apply my-6 aspect-video h-auto w-full;
+  }
+}
+
+/* Rosé Pine's own shades for these fail WCAG AA on its background. */
+.hljs-comment,
+.hljs-tag {
+  color: #908caa;
+}
+.hljs-built_in,
+.hljs-doctag,
+.hljs-quote,
+.hljs-keyword.hljs-atrule,
+.hljs-regexp {
+  color: #3e8fb0;
+}

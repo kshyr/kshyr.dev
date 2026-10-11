@@ -1,0 +1,36 @@
+---
+import "@/styles/global.css";
+import Head from "@/components/Head.astro";
+import IntroGate from "@/components/IntroGate.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+// Preload the latin files global.css uses so text doesn't wait for the CSS.
+import inter from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import lexendDeca from "@fontsource-variable/lexend-deca/files/lexend-deca-latin-wght-normal.woff2?url";
+import robotoMono from "@fontsource-variable/roboto-mono/files/roboto-mono-latin-wght-normal.woff2?url";
+
+type Props = Parameters<typeof Head>[0];
+---
+
+<html lang="en" class="dark">
+  <head>
+    <Head {...Astro.props} />
+    {[inter, lexendDeca, robotoMono].map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <meta name="theme-color" content="#020817" />
+    <IntroGate />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-primary px-4 py-2 text-primary-foreground no-underline focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+      >Skip to content</a
+    >
+    <div class="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-8 sm:pr-2 sm:pl-4 md:pt-2 lg:pt-6">
+      <Header />
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

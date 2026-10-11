@@ -1,0 +1,52 @@
+---
+import ConceptBadge from "@/components/ConceptBadge.astro";
+import { formatDate } from "@/lib/format";
+import type { Entry } from "@/lib/types";
+
+interface Props {
+  entries: Entry[];
+  caption: string;
+}
+const { entries, caption } = Astro.props;
+const hrefOf = (e: Entry) => `/${e.kind === "project" ? "projects" : "blog"}/${e.slug}`;
+---
+
+<div class="relative w-full overflow-auto">
+  <table class="w-full caption-bottom text-sm">
+    <caption class="mt-4 text-sm text-muted-foreground">{caption}</caption>
+    <thead class="[&_tr]:border-b">
+      <tr class="border-b">
+        <th scope="col" class="h-10 px-2 text-left align-middle font-medium text-muted-foreground sm:pl-5">Title</th>
+        <th scope="col" class="h-10 px-2 text-right align-middle font-medium text-muted-foreground">Tags</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        entries.map((entry) => (
+          <tr class="relative border-b text-[16px] transition-colors hover:bg-muted/50 focus-within:bg-muted/50">
+            <td class="px-2 py-5 align-middle font-semibold sm:pl-5">
+              <a
+                href={hrefOf(entry)}
+                class="text-foreground no-underline after:absolute after:inset-0 hover:text-foreground focus-visible:outline-none"
+              >
+                {entry.title}
+              </a>
+              {entry.isIdea && (
+                <span class="ml-2 align-middle">
+                  <ConceptBadge />
+                </span>
+              )}
+              <span class="mt-1 block text-xs font-normal text-muted-foreground">
+                <time datetime={entry.publishedAt}>
+                  {formatDate(entry.publishedAt)}
+                </time>
+                {entry.kind === "blog" && <> · {entry.readingTime} min read</>}
+              </span>
+            </td>
+            <td class="px-2 text-right align-middle text-[14px]">{entry.tags.join(", ")}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

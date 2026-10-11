@@ -1,0 +1,13 @@
+---
+// Must not read from Ghost: this page is shown when Ghost is unreachable.
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Temporarily unavailable" description="This page couldn't be loaded right now." noindex>
+  <div class="flex flex-col items-start gap-4 py-16">
+    <p class="font-mono text-sm text-muted-foreground">500</p>
+    <h1 class="font-display text-3xl font-bold">This page couldn't be loaded</h1>
+    <p class="text-muted-foreground">Something went wrong on my side. Please try again in a minute.</p>
+    <p><a href="/">Back to the home page</a></p>
+  </div>
+</Layout>

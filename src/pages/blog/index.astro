@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import EntryTable from "@/components/EntryTable.astro";
+import { getBlogPosts } from "@/lib/ghost/queries";
+import { breadcrumbJsonLd } from "@/lib/seo";
+
+const entries = await getBlogPosts();
+---
+
+<Layout title="Blog" description="A list of my blog posts." jsonLd={[breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }], Astro.site!)]}>
+  <h1 class="sr-only">Blog</h1>
+  <div class="py-4">
+    <EntryTable entries={entries} caption="A list of my blog posts." />
+  </div>
+</Layout>

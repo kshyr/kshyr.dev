@@ -1,0 +1,60 @@
+---
+import ExternalLink from "@lucide/astro/icons/external-link";
+import GithubIcon from "./GithubIcon.astro";
+import ConceptBadge from "@/components/ConceptBadge.astro";
+import { formatDate } from "@/lib/format";
+import type { Article } from "@/lib/types";
+
+interface Props {
+  article: Article;
+}
+const { article } = Astro.props;
+const hostOf = (url: string) => new URL(url, "https://kshyr.dev").hostname;
+const date = (iso: string) => formatDate(iso, "long");
+---
+
+<article class="flex flex-col gap-4 py-4">
+  <header class="flex flex-col gap-4">
+    {article.isIdea && <ConceptBadge size="md" />}
+    <h1 class="text-3xl font-bold">{article.title}</h1>
+    <p class="max-w-lg text-muted-foreground">{article.description}</p>
+    <p class="py-0 text-sm text-muted-foreground">
+      <time datetime={article.publishedAt}>{date(article.publishedAt)}</time>
+      {article.kind === "blog" && <> · {article.readingTime} min read</>}
+    </p>
+    {
+      article.links.length > 0 && (
+        <ul class="mb-4 flex flex-wrap gap-2">
+          {article.links.map((link) => (
+            <li>
+              <a
+                href={link.url}
+                class="text-md inline-flex h-9 items-center gap-2 rounded-md border border-border px-4 py-2 font-medium text-foreground no-underline shadow-sm transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                {hostOf(link.url) === "github.com" ? (
+                  <GithubIcon />
+                ) : hostOf(link.url) === "dev.to" ? (
+                  <img src="/dev-to.svg" width="22" height="22" alt="" class="invert" />
+                ) : (
+                  <ExternalLink width={20} aria-hidden="true" />
+                )}
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </header>
+  {
+    article.isIdea && (
+      <aside class="rounded-md border border-dashed border-amber-600/60 bg-amber-950/30 px-5 py-4 text-sm text-amber-100">
+        This is a concept I haven't built yet: a plan for what I'd make and how I'd show it. Nothing here describes
+        finished work.
+      </aside>
+    )
+  }
+  <div class="ghost-content">
+    <Fragment set:html={article.html} />
+  </div>
+</article>

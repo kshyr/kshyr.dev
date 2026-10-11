@@ -1,0 +1,16 @@
+---
+const RECENT_MINUTES = 30;
+const key = `kshyr:intro:${Astro.url.pathname}`;
+---
+
+<script is:inline define:vars={{ key, minutes: RECENT_MINUTES }}>
+  try {
+    var now = Date.now();
+    var last = Number(localStorage.getItem(key)) || 0;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce && now - last > minutes * 60000) {
+      document.documentElement.setAttribute("data-intro", "play");
+    }
+    localStorage.setItem(key, String(now));
+  } catch (e) {}
+</script>

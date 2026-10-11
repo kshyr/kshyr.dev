@@ -1,0 +1,11 @@
+/* Reveal the items anyway if the intro script never runs. */
+html[data-intro="play"] [data-intro-item] {
+  opacity: 0;
+  animation: intro-fallback 0s linear 4s forwards;
+}
+
+@keyframes intro-fallback {
+  to {
+    opacity: 1;
+  }
+}

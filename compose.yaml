@@ -1,0 +1,63 @@
+name: kshyr-dev
+
+services:
+  ghost:
+    image: ghost:6-alpine
+    restart: unless-stopped
+    ports:
+      - "${GHOST_BIND:-127.0.0.1}:${GHOST_PORT:-2368}:2368"
+    environment:
+      url: ${GHOST_ADMIN_URL:-http://localhost:2368}
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ${GHOST_DB_PASSWORD:-ghost}
+      database__connection__database: ghost
+      # Off by default: without mail configured, the confirmation code never arrives.
+      security__staffDeviceVerification: ${GHOST_DEVICE_VERIFICATION:-false}
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:2368/ghost/api/admin/site/"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${GHOST_DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ${GHOST_DB_PASSWORD:-ghost}
+    volumes:
+      - ghost-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${GHOST_DB_ROOT_PASSWORD:-root}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  site:
+    profiles: [site]
+    image: ${SITE_IMAGE:-ghcr.io/kshyr/kshyr.dev:latest}
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${SITE_BIND:-127.0.0.1}:${SITE_PORT:-3000}:3000"
+    environment:
+      GHOST_URL: http://ghost:2368
+      GHOST_CONTENT_API_KEY: ${GHOST_CONTENT_API_KEY:-}
+    depends_on:
+      ghost:
+        condition: service_healthy
+
+volumes:
+  ghost-content:
+  ghost-db:

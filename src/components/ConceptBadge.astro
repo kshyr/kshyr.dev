@@ -1,0 +1,27 @@
+---
+interface Props {
+  size?: "sm" | "md";
+}
+const { size = "sm" } = Astro.props;
+---
+
+<span class:list={["concept-badge", size]} title="A concept I haven't built yet">Concept — not built yet</span>
+
+<style>
+  .concept-badge {
+    display: inline-block;
+    border: 1px dashed currentColor;
+    border-radius: 6px;
+    color: #92400e;
+    color: light-dark(#92400e, #fbbf24);
+    font: 600 11px/1.4 ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0.02em;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .concept-badge.md {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+</style>

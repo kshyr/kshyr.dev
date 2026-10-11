@@ -1,0 +1,53 @@
+---
+import { COLORS } from "@/lib/data";
+
+const offsets = [
+  [-25, 15, 20, 1.8, 0],
+  [-20, 25, -10, 1.4, 1],
+  [-10, 20, -20, 2, 2],
+  [3, 20, 30, 1.5, 3],
+  [10, 25, 3, 2, 2],
+  [20, 20, -20, 1.7, 1],
+  [30, 30, -5, 1.4, 0],
+  [40, 25, 10, 1.8, 1],
+  [50, 30, 20, 1.5, 2],
+];
+---
+
+<strong class="memorable whitespace-nowrap select-none lg:select-text" tabindex="0"
+  >{
+    "memorable".split("").map((letter, i) => {
+      const [x, y, r, s, c] = offsets[i];
+      return (
+        <span style={`--x:${x}px;--y:${y}px;--r:${r}deg;--s:${s};--c:${COLORS[c]}`}>{letter}</span>
+      );
+    })
+  }</strong
+>
+
+<style>
+  .memorable span {
+    display: inline-block;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+  .memorable:hover,
+  .memorable:focus-visible {
+    color: hsl(var(--foreground));
+  }
+  .memorable:hover span,
+  .memorable:focus-visible span {
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(var(--s));
+    color: var(--c);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .memorable span {
+      transition: color 0.3s ease;
+    }
+    .memorable:hover span,
+    .memorable:focus-visible span {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Home from "@/components/Home.astro";
+import { getFeatured } from "@/lib/ghost/queries";
+import { personJsonLd, websiteJsonLd } from "@/lib/seo";
+import { SITE } from "@/lib/site";
+
+const { projects, posts } = await getFeatured();
+const site = Astro.site!;
+---
+
+<Layout description={SITE.description} type="profile" jsonLd={[personJsonLd(site), websiteJsonLd(site)]}>
+  <Home projects={projects} posts={posts} />
+</Layout>
